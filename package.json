@@ -1,0 +1,30 @@
+{
+  "name": "rspack-repro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm-run-all build:* --sequential --print-name",
+    "build:rspack": "RSPACK=1 pnpm rspack -c ./config.mjs",
+    "build:rsbuild": "rsbuild build",
+    "build:webpack": "WEBPACK=1 pnpm webpack -c ./config.mjs",
+    "dev:rspack": "RSPACK=1 rspack dev -c ./config.mjs",
+    "dev:rsbuild": "rsbuild dev",
+    "dev:webpack": "WEBPACK=1 webpack serve -c ./config.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rspack/cli": "1.0.0-alpha.3",
+    "@rspack/core": "1.0.0-alpha.3",
+    "html-webpack-plugin": "^5.6.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "1.0.1-beta.1",
+    "npm-run-all2": "^6.2.0"
+  }
+}
