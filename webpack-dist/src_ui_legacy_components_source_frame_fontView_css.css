@@ -1,0 +1,15 @@
+/*
+ * Copyright (c) 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+.font-view {
+  font-size: 60px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: center;
+  padding: 15px;
+}
+
+head{--webpack-rspack-repro-src_ui_legacy_components_source_frame_fontView_css:&\.\/src\/ui\/legacy\/components\/source_frame\/fontView\.css;}

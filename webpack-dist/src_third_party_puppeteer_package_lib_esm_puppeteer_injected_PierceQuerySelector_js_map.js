@@ -1,0 +1,13 @@
+(self["webpackChunkrspack_repro"] = self["webpackChunkrspack_repro"] || []).push([["src_third_party_puppeteer_package_lib_esm_puppeteer_injected_PierceQuerySelector_js_map"],{
+
+/***/ "./src/third_party/puppeteer/package/lib/esm/puppeteer/injected/PierceQuerySelector.js.map":
+/*!*************************************************************************************************!*\
+  !*** ./src/third_party/puppeteer/package/lib/esm/puppeteer/injected/PierceQuerySelector.js.map ***!
+  \*************************************************************************************************/
+/***/ (() => {
+
+throw new Error("Module parse failed: Unexpected token (1:10)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> {\"version\":3,\"file\":\"PierceQuerySelector.js\",\"sourceRoot\":\"\",\"sources\":[\"../../../../src/injected/PierceQuerySelector.ts\"],\"names\":[],\"mappings\":\"AAAA;;;;GAIG;AAEH;;GAEG;AACH,MAAM,CAAC,MAAM,mBAAmB,GAAG,CACjC,IAAU,EACV,QAAgB,EACA,EAAE;IAClB,IAAI,KAAK,GAAgB,IAAI,CAAC;IAC9B,MAAM,MAAM,GAAG,CAAC,IAAU,EAAE,EAAE;QAC5B,MAAM,IAAI,GAAG,QAAQ,CAAC,gBAAgB,CAAC,IAAI,EAAE,UAAU,CAAC,YAAY,CAAC,CAAC;QACtE,GAAG,CAAC;YACF,MAAM,WAAW,GAAG,IAAI,CAAC,WAAsB,CAAC;YAChD,IAAI,WAAW,CAAC,UAAU,EAAE,CAAC;gBAC3B,MAAM,CAAC,WAAW,CAAC,UAAU,CAAC,CAAC;YACjC,CAAC;YACD,IAAI,WAAW,YAAY,UAAU,EAAE,CAAC;gBACtC,SAAS;YACX,CAAC;YACD,IAAI,WAAW,KAAK,IAAI,IAAI,CAAC,KAAK,IAAI,WAAW,CAAC,OAAO,CAAC,QAAQ,CAAC,EAAE,CAAC;gBACpE,KAAK,GAAG,WAAW,CAAC;YACtB,CAAC;QACH,CAAC,QAAQ,CAAC,KAAK,IAAI,IAAI,CAAC,QAAQ,EAAE,EAAE;IACtC,CAAC,CAAC;IACF,IAAI,IAAI,YAAY,QAAQ,EAAE,CAAC;QAC7B,IAAI,GAAG,IAAI,CAAC,eAAe,CAAC;IAC9B,CAAC;IACD,MAAM,CAAC,IAAI,CAAC,CAAC;IACb,OAAO,KAAK,CAAC;AACf,CAAC,CAAC;AAEF;;GAEG;AACH,MAAM,CAAC,MAAM,sBAAsB,GAAG,CACpC,OAAa,EACb,QAAgB,EACL,EAAE;IACb,MAAM,MAAM,GAAc,EAAE,CAAC;IAC7B,MAAM,OAAO,GAAG,CAAC,IAAU,EAAE,EAAE;QAC7B,MAAM,IAAI,GAAG,QAAQ,CAAC,gBAAgB,CAAC,IAAI,EAAE,UAAU,CAAC,YAAY,CAAC,CAAC;QACtE,GAAG,CAAC;YACF,MAAM,WAAW,GAAG,IAAI,CAAC,WAAsB,CAAC;YAChD,IAAI,WAAW,CAAC,UAAU,EAAE,CAAC;gBAC3B,OAAO,CAAC,WAAW,CAAC,UAAU,CAAC,CAAC;YAClC,CAAC;YACD,IAAI,WAAW,YAAY,UAAU,EAAE,CAAC;gBACtC,SAAS;YACX,CAAC;YACD,IAAI,WAAW,KAAK,IAAI,IAAI,WAAW,CAAC,OAAO,CAAC,QAAQ,CAAC,EAAE,CAAC;gBAC1D,MAAM,CAAC,IAAI,CAAC,WAAW,CAAC,CAAC;YAC3B,CAAC;QACH,CAAC,QAAQ,IAAI,CAAC,QAAQ,EAAE,EAAE;IAC5B,CAAC,CAAC;IACF,IAAI,OAAO,YAAY,QAAQ,EAAE,CAAC;QAChC,OAAO,GAAG,OAAO,CAAC,eAAe,CAAC;IACpC,CAAC;IACD,OAAO,CAAC,OAAO,CAAC,CAAC;IACjB,OAAO,MAAM,CAAC;AAChB,CAAC,CAAC\"}");
+
+/***/ })
+
+}]);

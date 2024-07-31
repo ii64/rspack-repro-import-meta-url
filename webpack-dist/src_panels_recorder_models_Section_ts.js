@@ -1,0 +1,67 @@
+"use strict";
+(self["webpackChunkrspack_repro"] = self["webpackChunkrspack_repro"] || []).push([["src_panels_recorder_models_Section_ts"],{
+
+/***/ "./src/panels/recorder/models/Section.ts":
+/*!***********************************************!*\
+  !*** ./src/panels/recorder/models/Section.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   buildSections: () => (/* binding */ buildSections)
+/* harmony export */ });
+// Copyright 2023 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+function startNewSection(step) {
+    const navigationEvent = step.assertedEvents?.find(event => event.type === 'navigation');
+    if (step.type === 'navigate') {
+        return {
+            title: navigationEvent?.title || '',
+            url: step.url,
+            steps: [],
+            causingStep: step,
+        };
+    }
+    if (navigationEvent) {
+        return {
+            title: navigationEvent.title || '',
+            url: navigationEvent.url || '',
+            steps: [],
+        };
+    }
+    return null;
+}
+function buildSections(steps) {
+    let currentSection = null;
+    const sections = [];
+    for (const step of steps) {
+        if (currentSection) {
+            currentSection.steps.push(step);
+        }
+        else if (step.type === 'navigate') {
+            currentSection = startNewSection(step);
+            continue;
+        }
+        else {
+            currentSection = { title: 'Current page', url: '', steps: [step] };
+        }
+        const nextSection = startNewSection(step);
+        if (nextSection) {
+            if (currentSection) {
+                sections.push(currentSection);
+            }
+            currentSection = nextSection;
+        }
+    }
+    if (currentSection && (!sections.length || currentSection.steps.length)) {
+        sections.push(currentSection);
+    }
+    return sections;
+}
+
+
+/***/ })
+
+}]);

@@ -1,0 +1,27 @@
+"use strict";
+(self["webpackChunkrspack_repro"] = self["webpackChunkrspack_repro"] || []).push([["src_third_party_wasmparser_wasmparser_ts"],{
+
+/***/ "./src/third_party/wasmparser/wasmparser.ts":
+/*!**************************************************!*\
+  !*** ./src/third_party/wasmparser/wasmparser.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   WasmDis: () => (/* reexport module object */ _package_dist_esm_WasmDis_js__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   WasmParser: () => (/* reexport module object */ _package_dist_esm_WasmParser_js__WEBPACK_IMPORTED_MODULE_1__)
+/* harmony export */ });
+/* harmony import */ var _package_dist_esm_WasmDis_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./package/dist/esm/WasmDis.js */ "./src/third_party/wasmparser/package/dist/esm/WasmDis.js");
+/* harmony import */ var _package_dist_esm_WasmParser_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./package/dist/esm/WasmParser.js */ "./src/third_party/wasmparser/package/dist/esm/WasmParser.js");
+// Copyright 2021 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+
+
+
+/***/ })
+
+}]);

@@ -1,0 +1,13 @@
+(self["webpackChunkrspack_repro"] = self["webpackChunkrspack_repro"] || []).push([["src_Images_color-picker-filled_svg"],{
+
+/***/ "./src/Images/color-picker-filled.svg?c43c":
+/*!********************************************!*\
+  !*** ./src/Images/color-picker-filled.svg ***!
+  \********************************************/
+/***/ (() => {
+
+throw new Error("Module parse failed: Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> <svg width=\"20\" height=\"20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 17.083v-3.708l7.125-7.125L9 5.146l1.062-1.063 1.5 1.5 2.292-2.291a.75.75 0 0 1 .552-.23c.215 0 .4.077.552.23l1.813 1.833a.752.752 0 0 1 .229.552c0 .215-.076.4-.229.552L14.5 8.5l1.5 1.521-1.062 1.062-1.105-1.104-7.125 7.104H3Zm1.5-1.5h1.583l6.667-6.666-1.562-1.584L4.5 14v1.583Z\" fill=\"#000\"/></svg>");
+
+/***/ })
+
+}]);

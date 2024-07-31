@@ -1,0 +1,1676 @@
+"use strict";
+(self["webpackChunkrspack_repro"] = self["webpackChunkrspack_repro"] || []).push([["src_third_party_puppeteer_package_src_api_Page_ts"],{
+
+/***/ "./src/third_party/puppeteer/package/src/api/Page.ts":
+/*!***********************************************************!*\
+  !*** ./src/third_party/puppeteer/package/src/api/Page.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Page: () => (/* binding */ Page),
+/* harmony export */   PageEvent: () => (/* binding */ PageEvent),
+/* harmony export */   setDefaultScreenshotOptions: () => (/* binding */ setDefaultScreenshotOptions),
+/* harmony export */   supportedMetrics: () => (/* binding */ supportedMetrics)
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _common_Errors_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Errors.js */ "./src/third_party/puppeteer/package/src/common/Errors.ts");
+/* harmony import */ var _common_EventEmitter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/EventEmitter.js */ "./src/third_party/puppeteer/package/src/common/EventEmitter.ts");
+/* harmony import */ var _common_TimeoutSettings_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/TimeoutSettings.js */ "./src/third_party/puppeteer/package/src/common/TimeoutSettings.ts");
+/* harmony import */ var _common_util_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/util.js */ "./src/third_party/puppeteer/package/src/common/util.ts");
+/* harmony import */ var _util_decorators_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/decorators.js */ "./src/third_party/puppeteer/package/src/util/decorators.ts");
+/* harmony import */ var _util_disposable_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/disposable.js */ "./src/third_party/puppeteer/package/src/util/disposable.ts");
+/* harmony import */ var _locators_locators_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./locators/locators.js */ "./src/third_party/puppeteer/package/src/api/locators/locators.ts");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+var __runInitializers = (undefined && undefined.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
+var __esDecorate = (undefined && undefined.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
+    function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
+    var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+    var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
+    var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+    var _, done = false;
+    for (var i = decorators.length - 1; i >= 0; i--) {
+        var context = {};
+        for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
+        for (var p in contextIn.access) context.access[p] = contextIn.access[p];
+        context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
+        var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
+        if (kind === "accessor") {
+            if (result === void 0) continue;
+            if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+            if (_ = accept(result.get)) descriptor.get = _;
+            if (_ = accept(result.set)) descriptor.set = _;
+            if (_ = accept(result.init)) initializers.unshift(_);
+        }
+        else if (_ = accept(result)) {
+            if (kind === "field") initializers.unshift(_);
+            else descriptor[key] = _;
+        }
+    }
+    if (target) Object.defineProperty(target, contextIn.name, descriptor);
+    done = true;
+};
+var __addDisposableResource = (undefined && undefined.__addDisposableResource) || function (env, value, async) {
+    if (value !== null && value !== void 0) {
+        if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected.");
+        var dispose, inner;
+        if (async) {
+            if (!Symbol.asyncDispose) throw new TypeError("Symbol.asyncDispose is not defined.");
+            dispose = value[Symbol.asyncDispose];
+        }
+        if (dispose === void 0) {
+            if (!Symbol.dispose) throw new TypeError("Symbol.dispose is not defined.");
+            dispose = value[Symbol.dispose];
+            if (async) inner = dispose;
+        }
+        if (typeof dispose !== "function") throw new TypeError("Object not disposable.");
+        if (inner) dispose = function() { try { inner.call(this); } catch (e) { return Promise.reject(e); } };
+        env.stack.push({ value: value, dispose: dispose, async: async });
+    }
+    else if (async) {
+        env.stack.push({ async: true });
+    }
+    return value;
+};
+var __disposeResources = (undefined && undefined.__disposeResources) || (function (SuppressedError) {
+    return function (env) {
+        function fail(e) {
+            env.error = env.hasError ? new SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
+            env.hasError = true;
+        }
+        function next() {
+            while (env.stack.length) {
+                var rec = env.stack.pop();
+                try {
+                    var result = rec.dispose && rec.dispose.call(rec.value);
+                    if (rec.async) return Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+                }
+                catch (e) {
+                    fail(e);
+                }
+            }
+            if (env.hasError) throw env.error;
+        }
+        return next();
+    };
+})(typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+});
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+
+
+
+
+
+
+
+
+/**
+ * All the events that a page instance may emit.
+ *
+ * @public
+ */
+var PageEvent;
+(function (PageEvent) {
+    /**
+     * Emitted when the page closes.
+     */
+    PageEvent["Close"] = "close";
+    /**
+     * Emitted when JavaScript within the page calls one of console API methods,
+     * e.g. `console.log` or `console.dir`. Also emitted if the page throws an
+     * error or a warning.
+     *
+     * @remarks
+     * A `console` event provides a {@link ConsoleMessage} representing the
+     * console message that was logged.
+     *
+     * @example
+     * An example of handling `console` event:
+     *
+     * ```ts
+     * page.on('console', msg => {
+     *   for (let i = 0; i < msg.args().length; ++i)
+     *     console.log(`${i}: ${msg.args()[i]}`);
+     * });
+     * page.evaluate(() => console.log('hello', 5, {foo: 'bar'}));
+     * ```
+     */
+    PageEvent["Console"] = "console";
+    /**
+     * Emitted when a JavaScript dialog appears, such as `alert`, `prompt`,
+     * `confirm` or `beforeunload`. Puppeteer can respond to the dialog via
+     * {@link Dialog.accept} or {@link Dialog.dismiss}.
+     */
+    PageEvent["Dialog"] = "dialog";
+    /**
+     * Emitted when the JavaScript
+     * {@link https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded | DOMContentLoaded }
+     * event is dispatched.
+     */
+    PageEvent["DOMContentLoaded"] = "domcontentloaded";
+    /**
+     * Emitted when the page crashes. Will contain an `Error`.
+     */
+    PageEvent["Error"] = "error";
+    /** Emitted when a frame is attached. Will contain a {@link Frame}. */
+    PageEvent["FrameAttached"] = "frameattached";
+    /** Emitted when a frame is detached. Will contain a {@link Frame}. */
+    PageEvent["FrameDetached"] = "framedetached";
+    /**
+     * Emitted when a frame is navigated to a new URL. Will contain a
+     * {@link Frame}.
+     */
+    PageEvent["FrameNavigated"] = "framenavigated";
+    /**
+     * Emitted when the JavaScript
+     * {@link https://developer.mozilla.org/en-US/docs/Web/Events/load | load}
+     * event is dispatched.
+     */
+    PageEvent["Load"] = "load";
+    /**
+     * Emitted when the JavaScript code makes a call to `console.timeStamp`. For
+     * the list of metrics see {@link Page.metrics | page.metrics}.
+     *
+     * @remarks
+     * Contains an object with two properties:
+     *
+     * - `title`: the title passed to `console.timeStamp`
+     * - `metrics`: object containing metrics as key/value pairs. The values will
+     *   be `number`s.
+     */
+    PageEvent["Metrics"] = "metrics";
+    /**
+     * Emitted when an uncaught exception happens within the page. Contains an
+     * `Error`.
+     */
+    PageEvent["PageError"] = "pageerror";
+    /**
+     * Emitted when the page opens a new tab or window.
+     *
+     * Contains a {@link Page} corresponding to the popup window.
+     *
+     * @example
+     *
+     * ```ts
+     * const [popup] = await Promise.all([
+     *   new Promise(resolve => page.once('popup', resolve)),
+     *   page.click('a[target=_blank]'),
+     * ]);
+     * ```
+     *
+     * ```ts
+     * const [popup] = await Promise.all([
+     *   new Promise(resolve => page.once('popup', resolve)),
+     *   page.evaluate(() => window.open('https://example.com')),
+     * ]);
+     * ```
+     */
+    PageEvent["Popup"] = "popup";
+    /**
+     * Emitted when a page issues a request and contains a {@link HTTPRequest}.
+     *
+     * @remarks
+     * The object is readonly. See {@link Page.setRequestInterception} for
+     * intercepting and mutating requests.
+     */
+    PageEvent["Request"] = "request";
+    /**
+     * Emitted when a request ended up loading from cache. Contains a
+     * {@link HTTPRequest}.
+     *
+     * @remarks
+     * For certain requests, might contain undefined.
+     * {@link https://crbug.com/750469}
+     */
+    PageEvent["RequestServedFromCache"] = "requestservedfromcache";
+    /**
+     * Emitted when a request fails, for example by timing out.
+     *
+     * Contains a {@link HTTPRequest}.
+     *
+     * @remarks
+     * HTTP Error responses, such as 404 or 503, are still successful responses
+     * from HTTP standpoint, so request will complete with `requestfinished` event
+     * and not with `requestfailed`.
+     */
+    PageEvent["RequestFailed"] = "requestfailed";
+    /**
+     * Emitted when a request finishes successfully. Contains a
+     * {@link HTTPRequest}.
+     */
+    PageEvent["RequestFinished"] = "requestfinished";
+    /**
+     * Emitted when a response is received. Contains a {@link HTTPResponse}.
+     */
+    PageEvent["Response"] = "response";
+    /**
+     * Emitted when a dedicated
+     * {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API | WebWorker}
+     * is spawned by the page.
+     */
+    PageEvent["WorkerCreated"] = "workercreated";
+    /**
+     * Emitted when a dedicated
+     * {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API | WebWorker}
+     * is destroyed by the page.
+     */
+    PageEvent["WorkerDestroyed"] = "workerdestroyed";
+})(PageEvent || (PageEvent = {}));
+/**
+ * @internal
+ */
+function setDefaultScreenshotOptions(options) {
+    options.optimizeForSpeed ?? (options.optimizeForSpeed = false);
+    options.type ?? (options.type = 'png');
+    options.fromSurface ?? (options.fromSurface = true);
+    options.fullPage ?? (options.fullPage = false);
+    options.omitBackground ?? (options.omitBackground = false);
+    options.encoding ?? (options.encoding = 'binary');
+    options.captureBeyondViewport ?? (options.captureBeyondViewport = true);
+}
+/**
+ * Page provides methods to interact with a single tab or
+ * {@link https://developer.chrome.com/extensions/background_pages | extension background page}
+ * in the browser.
+ *
+ * :::note
+ *
+ * One Browser instance might have multiple Page instances.
+ *
+ * :::
+ *
+ * @example
+ * This example creates a page, navigates it to a URL, and then saves a screenshot:
+ *
+ * ```ts
+ * import puppeteer from 'puppeteer';
+ *
+ * (async () => {
+ *   const browser = await puppeteer.launch();
+ *   const page = await browser.newPage();
+ *   await page.goto('https://example.com');
+ *   await page.screenshot({path: 'screenshot.png'});
+ *   await browser.close();
+ * })();
+ * ```
+ *
+ * The Page class extends from Puppeteer's {@link EventEmitter} class and will
+ * emit various events which are documented in the {@link PageEvent} enum.
+ *
+ * @example
+ * This example logs a message for a single page `load` event:
+ *
+ * ```ts
+ * page.once('load', () => console.log('Page loaded!'));
+ * ```
+ *
+ * To unsubscribe from events use the {@link EventEmitter.off} method:
+ *
+ * ```ts
+ * function logRequest(interceptedRequest) {
+ *   console.log('A request was made:', interceptedRequest.url());
+ * }
+ * page.on('request', logRequest);
+ * // Sometime later...
+ * page.off('request', logRequest);
+ * ```
+ *
+ * @public
+ */
+let Page = (() => {
+    var _Page_instances, _a, _Page_requestHandlers, _Page_inflight$, _Page_screencastSessionCount, _Page_startScreencastPromise, _Page_getNativePixelDimensions;
+    let _classSuper = _common_EventEmitter_js__WEBPACK_IMPORTED_MODULE_2__.EventEmitter;
+    let _instanceExtraInitializers = [];
+    let _screenshot_decorators;
+    return _a = class Page extends _classSuper {
+            /**
+             * @internal
+             */
+            constructor() {
+                super();
+                _Page_instances.add(this);
+                /**
+                 * @internal
+                 */
+                Object.defineProperty(this, "_isDragging", {
+                    enumerable: true,
+                    configurable: true,
+                    writable: true,
+                    value: (__runInitializers(this, _instanceExtraInitializers), false)
+                });
+                /**
+                 * @internal
+                 */
+                Object.defineProperty(this, "_timeoutSettings", {
+                    enumerable: true,
+                    configurable: true,
+                    writable: true,
+                    value: new _common_TimeoutSettings_js__WEBPACK_IMPORTED_MODULE_3__.TimeoutSettings()
+                });
+                _Page_requestHandlers.set(this, new WeakMap());
+                _Page_inflight$.set(this, new Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(1));
+                _Page_screencastSessionCount.set(this, 0);
+                _Page_startScreencastPromise.set(this, void 0);
+                (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Request)
+                    .pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(originalRequest => {
+                    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(1), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.RequestFailed), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.RequestFinished), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Response).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(response => {
+                        return response.request();
+                    }))).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(request => {
+                        return request.id === originalRequest.id;
+                    }), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(1), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => {
+                        return -1;
+                    })));
+                }), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((acc, addend) => {
+                    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(acc + addend);
+                }, 0), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Close)), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(0))
+                    .subscribe(__classPrivateFieldGet(this, _Page_inflight$, "f"));
+            }
+            /**
+             * Listen to page events.
+             *
+             * @remarks
+             * This method exists to define event typings and handle proper wireup of
+             * cooperative request interception. Actual event listening and dispatching is
+             * delegated to {@link EventEmitter}.
+             *
+             * @internal
+             */
+            on(type, handler) {
+                if (type !== PageEvent.Request) {
+                    return super.on(type, handler);
+                }
+                let wrapper = __classPrivateFieldGet(this, _Page_requestHandlers, "f").get(handler);
+                if (wrapper === undefined) {
+                    wrapper = (event) => {
+                        event.enqueueInterceptAction(() => {
+                            return handler(event);
+                        });
+                    };
+                    __classPrivateFieldGet(this, _Page_requestHandlers, "f").set(handler, wrapper);
+                }
+                return super.on(type, wrapper);
+            }
+            /**
+             * @internal
+             */
+            off(type, handler) {
+                if (type === PageEvent.Request) {
+                    handler =
+                        __classPrivateFieldGet(this, _Page_requestHandlers, "f").get(handler) || handler;
+                }
+                return super.off(type, handler);
+            }
+            /**
+             * {@inheritDoc Accessibility}
+             */
+            get accessibility() {
+                return this.mainFrame().accessibility;
+            }
+            locator(selectorOrFunc) {
+                if (typeof selectorOrFunc === 'string') {
+                    return _locators_locators_js__WEBPACK_IMPORTED_MODULE_7__.NodeLocator.create(this, selectorOrFunc);
+                }
+                else {
+                    return _locators_locators_js__WEBPACK_IMPORTED_MODULE_7__.FunctionLocator.create(this, selectorOrFunc);
+                }
+            }
+            /**
+             * A shortcut for {@link Locator.race} that does not require static imports.
+             *
+             * @internal
+             */
+            locatorRace(locators) {
+                return _locators_locators_js__WEBPACK_IMPORTED_MODULE_7__.Locator.race(locators);
+            }
+            /**
+             * Finds the first element that matches the selector. If no element matches
+             * the selector, the return value resolves to `null`.
+             *
+             * @param selector -
+             * {@link https://pptr.dev/guides/page-interactions#selectors | selector}
+             * to query page for.
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | CSS selectors}
+             * can be passed as-is and a
+             * {@link https://pptr.dev/guides/page-interactions#non-css-selectors | Puppeteer-specific selector syntax}
+             * allows quering by
+             * {@link https://pptr.dev/guides/page-interactions#text-selectors--p-text | text},
+             * {@link https://pptr.dev/guides/page-interactions#aria-selectors--p-aria | a11y role and name},
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#xpath-selectors--p-xpath | xpath}
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#querying-elements-in-shadow-dom | combining these queries across shadow roots}.
+             * Alternatively, you can specify the selector type using a
+             * {@link https://pptr.dev/guides/page-interactions#prefixed-selector-syntax | prefix}.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.$ | Page.mainFrame().$(selector) }.
+             */
+            async $(selector) {
+                return await this.mainFrame().$(selector);
+            }
+            /**
+             * Finds elements on the page that match the selector. If no elements
+             * match the selector, the return value resolves to `[]`.
+             *
+             * @param selector -
+             * {@link https://pptr.dev/guides/page-interactions#selectors | selector}
+             * to query page for.
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | CSS selectors}
+             * can be passed as-is and a
+             * {@link https://pptr.dev/guides/page-interactions#non-css-selectors | Puppeteer-specific selector syntax}
+             * allows quering by
+             * {@link https://pptr.dev/guides/page-interactions#text-selectors--p-text | text},
+             * {@link https://pptr.dev/guides/page-interactions#aria-selectors--p-aria | a11y role and name},
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#xpath-selectors--p-xpath | xpath}
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#querying-elements-in-shadow-dom | combining these queries across shadow roots}.
+             * Alternatively, you can specify the selector type using a
+             * {@link https://pptr.dev/guides/page-interactions#prefixed-selector-syntax | prefix}.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.$$ | Page.mainFrame().$$(selector) }.
+             */
+            async $$(selector, options) {
+                return await this.mainFrame().$$(selector, options);
+            }
+            /**
+             * @remarks
+             *
+             * The only difference between {@link Page.evaluate | page.evaluate} and
+             * `page.evaluateHandle` is that `evaluateHandle` will return the value
+             * wrapped in an in-page object.
+             *
+             * If the function passed to `page.evaluateHandle` returns a Promise, the
+             * function will wait for the promise to resolve and return its value.
+             *
+             * You can pass a string instead of a function (although functions are
+             * recommended as they are easier to debug and use with TypeScript):
+             *
+             * @example
+             *
+             * ```ts
+             * const aHandle = await page.evaluateHandle('document');
+             * ```
+             *
+             * @example
+             * {@link JSHandle} instances can be passed as arguments to the `pageFunction`:
+             *
+             * ```ts
+             * const aHandle = await page.evaluateHandle(() => document.body);
+             * const resultHandle = await page.evaluateHandle(
+             *   body => body.innerHTML,
+             *   aHandle
+             * );
+             * console.log(await resultHandle.jsonValue());
+             * await resultHandle.dispose();
+             * ```
+             *
+             * Most of the time this function returns a {@link JSHandle},
+             * but if `pageFunction` returns a reference to an element,
+             * you instead get an {@link ElementHandle} back:
+             *
+             * @example
+             *
+             * ```ts
+             * const button = await page.evaluateHandle(() =>
+             *   document.querySelector('button')
+             * );
+             * // can call `click` because `button` is an `ElementHandle`
+             * await button.click();
+             * ```
+             *
+             * The TypeScript definitions assume that `evaluateHandle` returns
+             * a `JSHandle`, but if you know it's going to return an
+             * `ElementHandle`, pass it as the generic argument:
+             *
+             * ```ts
+             * const button = await page.evaluateHandle<ElementHandle>(...);
+             * ```
+             *
+             * @param pageFunction - a function that is run within the page
+             * @param args - arguments to be passed to the pageFunction
+             */
+            async evaluateHandle(pageFunction, ...args) {
+                pageFunction = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.withSourcePuppeteerURLIfNone)(this.evaluateHandle.name, pageFunction);
+                return await this.mainFrame().evaluateHandle(pageFunction, ...args);
+            }
+            /**
+             * This method finds the first element within the page that matches the selector
+             * and passes the result as the first argument to the `pageFunction`.
+             *
+             * @remarks
+             *
+             * If no element is found matching `selector`, the method will throw an error.
+             *
+             * If `pageFunction` returns a promise `$eval` will wait for the promise to
+             * resolve and then return its value.
+             *
+             * @example
+             *
+             * ```ts
+             * const searchValue = await page.$eval('#search', el => el.value);
+             * const preloadHref = await page.$eval('link[rel=preload]', el => el.href);
+             * const html = await page.$eval('.main-container', el => el.outerHTML);
+             * ```
+             *
+             * If you are using TypeScript, you may have to provide an explicit type to the
+             * first argument of the `pageFunction`.
+             * By default it is typed as `Element`, but you may need to provide a more
+             * specific sub-type:
+             *
+             * @example
+             *
+             * ```ts
+             * // if you don't provide HTMLInputElement here, TS will error
+             * // as `value` is not on `Element`
+             * const searchValue = await page.$eval(
+             *   '#search',
+             *   (el: HTMLInputElement) => el.value
+             * );
+             * ```
+             *
+             * The compiler should be able to infer the return type
+             * from the `pageFunction` you provide. If it is unable to, you can use the generic
+             * type to tell the compiler what return type you expect from `$eval`:
+             *
+             * @example
+             *
+             * ```ts
+             * // The compiler can infer the return type in this case, but if it can't
+             * // or if you want to be more explicit, provide it as the generic type.
+             * const searchValue = await page.$eval<string>(
+             *   '#search',
+             *   (el: HTMLInputElement) => el.value
+             * );
+             * ```
+             *
+             * @param selector -
+             * {@link https://pptr.dev/guides/page-interactions#selectors | selector}
+             * to query page for.
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | CSS selectors}
+             * can be passed as-is and a
+             * {@link https://pptr.dev/guides/page-interactions#non-css-selectors | Puppeteer-specific selector syntax}
+             * allows quering by
+             * {@link https://pptr.dev/guides/page-interactions#text-selectors--p-text | text},
+             * {@link https://pptr.dev/guides/page-interactions#aria-selectors--p-aria | a11y role and name},
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#xpath-selectors--p-xpath | xpath}
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#querying-elements-in-shadow-dom | combining these queries across shadow roots}.
+             * Alternatively, you can specify the selector type using a
+             * {@link https://pptr.dev/guides/page-interactions#prefixed-selector-syntax | prefix}.
+             * @param pageFunction - the function to be evaluated in the page context.
+             * Will be passed the result of the element matching the selector as its
+             * first argument.
+             * @param args - any additional arguments to pass through to `pageFunction`.
+             *
+             * @returns The result of calling `pageFunction`. If it returns an element it
+             * is wrapped in an {@link ElementHandle}, else the raw value itself is
+             * returned.
+             */
+            async $eval(selector, pageFunction, ...args) {
+                pageFunction = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.withSourcePuppeteerURLIfNone)(this.$eval.name, pageFunction);
+                return await this.mainFrame().$eval(selector, pageFunction, ...args);
+            }
+            /**
+             * This method returns all elements matching the selector and passes the
+             * resulting array as the first argument to the `pageFunction`.
+             *
+             * @remarks
+             * If `pageFunction` returns a promise `$$eval` will wait for the promise to
+             * resolve and then return its value.
+             *
+             * @example
+             *
+             * ```ts
+             * // get the amount of divs on the page
+             * const divCount = await page.$$eval('div', divs => divs.length);
+             *
+             * // get the text content of all the `.options` elements:
+             * const options = await page.$$eval('div > span.options', options => {
+             *   return options.map(option => option.textContent);
+             * });
+             * ```
+             *
+             * If you are using TypeScript, you may have to provide an explicit type to the
+             * first argument of the `pageFunction`.
+             * By default it is typed as `Element[]`, but you may need to provide a more
+             * specific sub-type:
+             *
+             * @example
+             *
+             * ```ts
+             * await page.$$eval('input', elements => {
+             *   return elements.map(e => e.value);
+             * });
+             * ```
+             *
+             * The compiler should be able to infer the return type
+             * from the `pageFunction` you provide. If it is unable to, you can use the generic
+             * type to tell the compiler what return type you expect from `$$eval`:
+             *
+             * @example
+             *
+             * ```ts
+             * const allInputValues = await page.$$eval('input', elements =>
+             *   elements.map(e => e.textContent)
+             * );
+             * ```
+             *
+             * @param selector -
+             * {@link https://pptr.dev/guides/page-interactions#selectors | selector}
+             * to query page for.
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | CSS selectors}
+             * can be passed as-is and a
+             * {@link https://pptr.dev/guides/page-interactions#non-css-selectors | Puppeteer-specific selector syntax}
+             * allows quering by
+             * {@link https://pptr.dev/guides/page-interactions#text-selectors--p-text | text},
+             * {@link https://pptr.dev/guides/page-interactions#aria-selectors--p-aria | a11y role and name},
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#xpath-selectors--p-xpath | xpath}
+             * and
+             * {@link https://pptr.dev/guides/page-interactions#querying-elements-in-shadow-dom | combining these queries across shadow roots}.
+             * Alternatively, you can specify the selector type using a
+             * {@link https://pptr.dev/guides/page-interactions#prefixed-selector-syntax | prefix}.
+             * @param pageFunction - the function to be evaluated in the page context.
+             * Will be passed an array of matching elements as its first argument.
+             * @param args - any additional arguments to pass through to `pageFunction`.
+             *
+             * @returns The result of calling `pageFunction`. If it returns an element it
+             * is wrapped in an {@link ElementHandle}, else the raw value itself is
+             * returned.
+             */
+            async $$eval(selector, pageFunction, ...args) {
+                pageFunction = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.withSourcePuppeteerURLIfNone)(this.$$eval.name, pageFunction);
+                return await this.mainFrame().$$eval(selector, pageFunction, ...args);
+            }
+            /**
+             * Adds a `<script>` tag into the page with the desired URL or content.
+             *
+             * @remarks
+             * Shortcut for
+             * {@link Frame.addScriptTag | page.mainFrame().addScriptTag(options)}.
+             *
+             * @param options - Options for the script.
+             * @returns An {@link ElementHandle | element handle} to the injected
+             * `<script>` element.
+             */
+            async addScriptTag(options) {
+                return await this.mainFrame().addScriptTag(options);
+            }
+            async addStyleTag(options) {
+                return await this.mainFrame().addStyleTag(options);
+            }
+            /**
+             * The page's URL.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.url | page.mainFrame().url()}.
+             */
+            url() {
+                return this.mainFrame().url();
+            }
+            /**
+             * The full HTML contents of the page, including the DOCTYPE.
+             */
+            async content() {
+                return await this.mainFrame().content();
+            }
+            /**
+             * Set the content of the page.
+             *
+             * @param html - HTML markup to assign to the page.
+             * @param options - Parameters that has some properties.
+             */
+            async setContent(html, options) {
+                await this.mainFrame().setContent(html, options);
+            }
+            /**
+             * {@inheritDoc Frame.goto}
+             */
+            async goto(url, options) {
+                return await this.mainFrame().goto(url, options);
+            }
+            /**
+             * Waits for the page to navigate to a new URL or to reload. It is useful when
+             * you run code that will indirectly cause the page to navigate.
+             *
+             * @example
+             *
+             * ```ts
+             * const [response] = await Promise.all([
+             *   page.waitForNavigation(), // The promise resolves after navigation has finished
+             *   page.click('a.my-link'), // Clicking the link will indirectly cause a navigation
+             * ]);
+             * ```
+             *
+             * @remarks
+             *
+             * Usage of the
+             * {@link https://developer.mozilla.org/en-US/docs/Web/API/History_API | History API}
+             * to change the URL is considered a navigation.
+             *
+             * @param options - Navigation parameters which might have the following
+             * properties:
+             * @returns A `Promise` which resolves to the main resource response.
+             *
+             * - In case of multiple redirects, the navigation will resolve with the
+             *   response of the last redirect.
+             * - In case of navigation to a different anchor or navigation due to History
+             *   API usage, the navigation will resolve with `null`.
+             */
+            async waitForNavigation(options = {}) {
+                return await this.mainFrame().waitForNavigation(options);
+            }
+            /**
+             * @param urlOrPredicate - A URL or predicate to wait for
+             * @param options - Optional waiting parameters
+             * @returns Promise which resolves to the matched request
+             * @example
+             *
+             * ```ts
+             * const firstRequest = await page.waitForRequest(
+             *   'https://example.com/resource'
+             * );
+             * const finalRequest = await page.waitForRequest(
+             *   request => request.url() === 'https://example.com'
+             * );
+             * return finalRequest.response()?.ok();
+             * ```
+             *
+             * @remarks
+             * Optional Waiting Parameters have:
+             *
+             * - `timeout`: Maximum wait time in milliseconds, defaults to `30` seconds, pass
+             *   `0` to disable the timeout. The default value can be changed by using the
+             *   {@link Page.setDefaultTimeout} method.
+             */
+            waitForRequest(urlOrPredicate, options = {}) {
+                const { timeout: ms = this._timeoutSettings.timeout(), signal } = options;
+                if (typeof urlOrPredicate === 'string') {
+                    const url = urlOrPredicate;
+                    urlOrPredicate = (request) => {
+                        return request.url() === url;
+                    };
+                }
+                const observable$ = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Request).pipe((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.filterAsync)(urlOrPredicate), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.timeout)(ms), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromAbortSignal)(signal), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Close).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => {
+                    throw new _common_Errors_js__WEBPACK_IMPORTED_MODULE_1__.TargetCloseError('Page closed!');
+                }))));
+                return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(observable$);
+            }
+            /**
+             * @param urlOrPredicate - A URL or predicate to wait for.
+             * @param options - Optional waiting parameters
+             * @returns Promise which resolves to the matched response.
+             * @example
+             *
+             * ```ts
+             * const firstResponse = await page.waitForResponse(
+             *   'https://example.com/resource'
+             * );
+             * const finalResponse = await page.waitForResponse(
+             *   response =>
+             *     response.url() === 'https://example.com' && response.status() === 200
+             * );
+             * const finalResponse = await page.waitForResponse(async response => {
+             *   return (await response.text()).includes('<html>');
+             * });
+             * return finalResponse.ok();
+             * ```
+             *
+             * @remarks
+             * Optional Parameter have:
+             *
+             * - `timeout`: Maximum wait time in milliseconds, defaults to `30` seconds,
+             *   pass `0` to disable the timeout. The default value can be changed by using
+             *   the {@link Page.setDefaultTimeout} method.
+             */
+            waitForResponse(urlOrPredicate, options = {}) {
+                const { timeout: ms = this._timeoutSettings.timeout(), signal } = options;
+                if (typeof urlOrPredicate === 'string') {
+                    const url = urlOrPredicate;
+                    urlOrPredicate = (response) => {
+                        return response.url() === url;
+                    };
+                }
+                const observable$ = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Response).pipe((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.filterAsync)(urlOrPredicate), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.timeout)(ms), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromAbortSignal)(signal), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Close).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => {
+                    throw new _common_Errors_js__WEBPACK_IMPORTED_MODULE_1__.TargetCloseError('Page closed!');
+                }))));
+                return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(observable$);
+            }
+            /**
+             * Waits for the network to be idle.
+             *
+             * @param options - Options to configure waiting behavior.
+             * @returns A promise which resolves once the network is idle.
+             */
+            waitForNetworkIdle(options = {}) {
+                return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(this.waitForNetworkIdle$(options));
+            }
+            /**
+             * @internal
+             */
+            waitForNetworkIdle$(options = {}) {
+                const { timeout: ms = this._timeoutSettings.timeout(), idleTime = _common_util_js__WEBPACK_IMPORTED_MODULE_4__.NETWORK_IDLE_TIME, concurrency = 0, signal, } = options;
+                return __classPrivateFieldGet(this, _Page_inflight$, "f").pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(inflight => {
+                    if (inflight > concurrency) {
+                        return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+                    }
+                    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(idleTime);
+                }), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => { }), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.timeout)(ms), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromAbortSignal)(signal), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Close).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => {
+                    throw new _common_Errors_js__WEBPACK_IMPORTED_MODULE_1__.TargetCloseError('Page closed!');
+                }))));
+            }
+            /**
+             * Waits for a frame matching the given conditions to appear.
+             *
+             * @example
+             *
+             * ```ts
+             * const frame = await page.waitForFrame(async frame => {
+             *   return frame.name() === 'Test';
+             * });
+             * ```
+             */
+            async waitForFrame(urlOrPredicate, options = {}) {
+                const { timeout: ms = this.getDefaultTimeout(), signal } = options;
+                if ((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.isString)(urlOrPredicate)) {
+                    urlOrPredicate = (frame) => {
+                        return urlOrPredicate === frame.url();
+                    };
+                }
+                return await Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.FrameAttached), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.FrameNavigated), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(this.frames())).pipe((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.filterAsync)(urlOrPredicate), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(), Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.timeout)(ms), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromAbortSignal)(signal), (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.fromEmitterEvent)(this, PageEvent.Close).pipe(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../third_party/rxjs/rxjs.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(() => {
+                    throw new _common_Errors_js__WEBPACK_IMPORTED_MODULE_1__.TargetCloseError('Page closed.');
+                })))));
+            }
+            /**
+             * Emulates a given device's metrics and user agent.
+             *
+             * To aid emulation, Puppeteer provides a list of known devices that can be
+             * via {@link KnownDevices}.
+             *
+             * @remarks
+             * This method is a shortcut for calling two methods:
+             * {@link Page.setUserAgent} and {@link Page.setViewport}.
+             *
+             * This method will resize the page. A lot of websites don't expect phones to
+             * change size, so you should emulate before navigating to the page.
+             *
+             * @example
+             *
+             * ```ts
+             * import {KnownDevices} from 'puppeteer';
+             * const iPhone = KnownDevices['iPhone 15 Pro'];
+             *
+             * (async () => {
+             *   const browser = await puppeteer.launch();
+             *   const page = await browser.newPage();
+             *   await page.emulate(iPhone);
+             *   await page.goto('https://www.google.com');
+             *   // other actions...
+             *   await browser.close();
+             * })();
+             * ```
+             */
+            async emulate(device) {
+                await Promise.all([
+                    this.setUserAgent(device.userAgent),
+                    this.setViewport(device.viewport),
+                ]);
+            }
+            /**
+             * Evaluates a function in the page's context and returns the result.
+             *
+             * If the function passed to `page.evaluate` returns a Promise, the
+             * function will wait for the promise to resolve and return its value.
+             *
+             * @example
+             *
+             * ```ts
+             * const result = await frame.evaluate(() => {
+             *   return Promise.resolve(8 * 7);
+             * });
+             * console.log(result); // prints "56"
+             * ```
+             *
+             * You can pass a string instead of a function (although functions are
+             * recommended as they are easier to debug and use with TypeScript):
+             *
+             * @example
+             *
+             * ```ts
+             * const aHandle = await page.evaluate('1 + 2');
+             * ```
+             *
+             * To get the best TypeScript experience, you should pass in as the
+             * generic the type of `pageFunction`:
+             *
+             * ```ts
+             * const aHandle = await page.evaluate(() => 2);
+             * ```
+             *
+             * @example
+             *
+             * {@link ElementHandle} instances (including {@link JSHandle}s) can be passed
+             * as arguments to the `pageFunction`:
+             *
+             * ```ts
+             * const bodyHandle = await page.$('body');
+             * const html = await page.evaluate(body => body.innerHTML, bodyHandle);
+             * await bodyHandle.dispose();
+             * ```
+             *
+             * @param pageFunction - a function that is run within the page
+             * @param args - arguments to be passed to the pageFunction
+             *
+             * @returns the return value of `pageFunction`.
+             */
+            async evaluate(pageFunction, ...args) {
+                pageFunction = (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.withSourcePuppeteerURLIfNone)(this.evaluate.name, pageFunction);
+                return await this.mainFrame().evaluate(pageFunction, ...args);
+            }
+            /**
+             * @internal
+             */
+            async _maybeWriteBufferToFile(path, buffer) {
+                if (!path) {
+                    return;
+                }
+                const fs = await (0,_common_util_js__WEBPACK_IMPORTED_MODULE_4__.importFSPromises)();
+                await fs.writeFile(path, buffer);
+            }
+            /**
+             * Captures a screencast of this {@link Page | page}.
+             *
+             * @example
+             * Recording a {@link Page | page}:
+             *
+             * ```
+             * import puppeteer from 'puppeteer';
+             *
+             * // Launch a browser
+             * const browser = await puppeteer.launch();
+             *
+             * // Create a new page
+             * const page = await browser.newPage();
+             *
+             * // Go to your site.
+             * await page.goto("https://www.example.com");
+             *
+             * // Start recording.
+             * const recorder = await page.screencast({path: 'recording.webm'});
+             *
+             * // Do something.
+             *
+             * // Stop recording.
+             * await recorder.stop();
+             *
+             * browser.close();
+             * ```
+             *
+             * @param options - Configures screencast behavior.
+             *
+             * @experimental
+             *
+             * @remarks
+             *
+             * All recordings will be {@link https://www.webmproject.org/ | WebM} format using
+             * the {@link https://www.webmproject.org/vp9/ | VP9} video codec. The FPS is 30.
+             *
+             * You must have {@link https://ffmpeg.org/ | ffmpeg} installed on your system.
+             */
+            async screencast(options = {}) {
+                const [{ ScreenRecorder }, [width, height, devicePixelRatio]] = await Promise.all([
+                    Promise.all(/*! import() */[__webpack_require__.e("src_third_party_puppeteer_package_src_node_ScreenRecorder_ts"), __webpack_require__.e("src_third_party_puppeteer_package_src_api_CDPSession_ts-_fd545")]).then(__webpack_require__.bind(__webpack_require__, /*! ../node/ScreenRecorder.js */ "./src/third_party/puppeteer/package/src/node/ScreenRecorder.ts")),
+                    __classPrivateFieldGet(this, _Page_instances, "m", _Page_getNativePixelDimensions).call(this),
+                ]);
+                let crop;
+                if (options.crop) {
+                    const { x, y, width: cropWidth, height: cropHeight, } = roundRectangle(normalizeRectangle(options.crop));
+                    if (x < 0 || y < 0) {
+                        throw new Error(`\`crop.x\` and \`crop.y\` must be greater than or equal to 0.`);
+                    }
+                    if (cropWidth <= 0 || cropHeight <= 0) {
+                        throw new Error(`\`crop.height\` and \`crop.width\` must be greater than or equal to 0.`);
+                    }
+                    const viewportWidth = width / devicePixelRatio;
+                    const viewportHeight = height / devicePixelRatio;
+                    if (x + cropWidth > viewportWidth) {
+                        throw new Error(`\`crop.width\` cannot be larger than the viewport width (${viewportWidth}).`);
+                    }
+                    if (y + cropHeight > viewportHeight) {
+                        throw new Error(`\`crop.height\` cannot be larger than the viewport height (${viewportHeight}).`);
+                    }
+                    crop = {
+                        x: x * devicePixelRatio,
+                        y: y * devicePixelRatio,
+                        width: cropWidth * devicePixelRatio,
+                        height: cropHeight * devicePixelRatio,
+                    };
+                }
+                if (options.speed !== undefined && options.speed <= 0) {
+                    throw new Error(`\`speed\` must be greater than 0.`);
+                }
+                if (options.scale !== undefined && options.scale <= 0) {
+                    throw new Error(`\`scale\` must be greater than 0.`);
+                }
+                const recorder = new ScreenRecorder(this, width, height, {
+                    ...options,
+                    path: options.ffmpegPath,
+                    crop,
+                });
+                try {
+                    await this._startScreencast();
+                }
+                catch (error) {
+                    void recorder.stop();
+                    throw error;
+                }
+                if (options.path) {
+                    const { createWriteStream } = await Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+                    const stream = createWriteStream(options.path, 'binary');
+                    recorder.pipe(stream);
+                }
+                return recorder;
+            }
+            /**
+             * @internal
+             */
+            async _startScreencast() {
+                var _b;
+                __classPrivateFieldSet(this, _Page_screencastSessionCount, (_b = __classPrivateFieldGet(this, _Page_screencastSessionCount, "f"), ++_b), "f");
+                if (!__classPrivateFieldGet(this, _Page_startScreencastPromise, "f")) {
+                    __classPrivateFieldSet(this, _Page_startScreencastPromise, this.mainFrame()
+                        .client.send('Page.startScreencast', { format: 'png' })
+                        .then(() => {
+                        // Wait for the first frame.
+                        return new Promise(resolve => {
+                            return this.mainFrame().client.once('Page.screencastFrame', () => {
+                                return resolve();
+                            });
+                        });
+                    }), "f");
+                }
+                await __classPrivateFieldGet(this, _Page_startScreencastPromise, "f");
+            }
+            /**
+             * @internal
+             */
+            async _stopScreencast() {
+                var _b;
+                __classPrivateFieldSet(this, _Page_screencastSessionCount, (_b = __classPrivateFieldGet(this, _Page_screencastSessionCount, "f"), --_b), "f");
+                if (!__classPrivateFieldGet(this, _Page_startScreencastPromise, "f")) {
+                    return;
+                }
+                __classPrivateFieldSet(this, _Page_startScreencastPromise, undefined, "f");
+                if (__classPrivateFieldGet(this, _Page_screencastSessionCount, "f") === 0) {
+                    await this.mainFrame().client.send('Page.stopScreencast');
+                }
+            }
+            async screenshot(userOptions = {}) {
+                const env_1 = { stack: [], error: void 0, hasError: false };
+                try {
+                    const _guard = __addDisposableResource(env_1, await this.browserContext().startScreenshot(), false);
+                    await this.bringToFront();
+                    // TODO: use structuredClone after Node 16 support is dropped.
+                    const options = {
+                        ...userOptions,
+                        clip: userOptions.clip
+                            ? {
+                                ...userOptions.clip,
+                            }
+                            : undefined,
+                    };
+                    if (options.type === undefined && options.path !== undefined) {
+                        const filePath = options.path;
+                        // Note we cannot use Node.js here due to browser compatibility.
+                        const extension = filePath
+                            .slice(filePath.lastIndexOf('.') + 1)
+                            .toLowerCase();
+                        switch (extension) {
+                            case 'png':
+                                options.type = 'png';
+                                break;
+                            case 'jpeg':
+                            case 'jpg':
+                                options.type = 'jpeg';
+                                break;
+                            case 'webp':
+                                options.type = 'webp';
+                                break;
+                        }
+                    }
+                    if (options.quality !== undefined) {
+                        if (options.quality < 0 || options.quality > 100) {
+                            throw new Error(`Expected 'quality' (${options.quality}) to be between 0 and 100, inclusive.`);
+                        }
+                        if (options.type === undefined ||
+                            !['jpeg', 'webp'].includes(options.type)) {
+                            throw new Error(`${options.type ?? 'png'} screenshots do not support 'quality'.`);
+                        }
+                    }
+                    if (options.clip) {
+                        if (options.clip.width <= 0) {
+                            throw new Error("'width' in 'clip' must be positive.");
+                        }
+                        if (options.clip.height <= 0) {
+                            throw new Error("'height' in 'clip' must be positive.");
+                        }
+                    }
+                    setDefaultScreenshotOptions(options);
+                    const stack = __addDisposableResource(env_1, new _util_disposable_js__WEBPACK_IMPORTED_MODULE_6__.AsyncDisposableStack(), true);
+                    if (options.clip) {
+                        if (options.fullPage) {
+                            throw new Error("'clip' and 'fullPage' are mutually exclusive");
+                        }
+                        options.clip = roundRectangle(normalizeRectangle(options.clip));
+                    }
+                    else {
+                        if (options.fullPage) {
+                            // If `captureBeyondViewport` is `false`, then we set the viewport to
+                            // capture the full page. Note this may be affected by on-page CSS and
+                            // JavaScript.
+                            if (!options.captureBeyondViewport) {
+                                const scrollDimensions = await this.mainFrame()
+                                    .isolatedRealm()
+                                    .evaluate(() => {
+                                    const element = document.documentElement;
+                                    return {
+                                        width: element.scrollWidth,
+                                        height: element.scrollHeight,
+                                    };
+                                });
+                                const viewport = this.viewport();
+                                await this.setViewport({
+                                    ...viewport,
+                                    ...scrollDimensions,
+                                });
+                                stack.defer(async () => {
+                                    await this.setViewport(viewport).catch(_common_util_js__WEBPACK_IMPORTED_MODULE_4__.debugError);
+                                });
+                            }
+                        }
+                        else {
+                            options.captureBeyondViewport = false;
+                        }
+                    }
+                    const data = await this._screenshot(options);
+                    if (options.encoding === 'base64') {
+                        return data;
+                    }
+                    const buffer = Buffer.from(data, 'base64');
+                    await this._maybeWriteBufferToFile(options.path, buffer);
+                    return buffer;
+                }
+                catch (e_1) {
+                    env_1.error = e_1;
+                    env_1.hasError = true;
+                }
+                finally {
+                    const result_1 = __disposeResources(env_1);
+                    if (result_1)
+                        await result_1;
+                }
+            }
+            /**
+             * The page's title
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.title | page.mainFrame().title()}.
+             */
+            async title() {
+                return await this.mainFrame().title();
+            }
+            /**
+             * This method fetches an element with `selector`, scrolls it into view if
+             * needed, and then uses {@link Page.mouse} to click in the center of the
+             * element. If there's no element matching `selector`, the method throws an
+             * error.
+             *
+             * @remarks
+             *
+             * Bear in mind that if `click()` triggers a navigation event and
+             * there's a separate `page.waitForNavigation()` promise to be resolved, you
+             * may end up with a race condition that yields unexpected results. The
+             * correct pattern for click and wait for navigation is the following:
+             *
+             * ```ts
+             * const [response] = await Promise.all([
+             *   page.waitForNavigation(waitOptions),
+             *   page.click(selector, clickOptions),
+             * ]);
+             * ```
+             *
+             * Shortcut for {@link Frame.click | page.mainFrame().click(selector[, options]) }.
+             * @param selector - A `selector` to search for element to click. If there are
+             * multiple elements satisfying the `selector`, the first will be clicked
+             * @param options - `Object`
+             * @returns Promise which resolves when the element matching `selector` is
+             * successfully clicked. The Promise will be rejected if there is no element
+             * matching `selector`.
+             */
+            click(selector, options) {
+                return this.mainFrame().click(selector, options);
+            }
+            /**
+             * This method fetches an element with `selector` and focuses it. If there's no
+             * element matching `selector`, the method throws an error.
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | selector }
+             * of an element to focus. If there are multiple elements satisfying the
+             * selector, the first will be focused.
+             * @returns Promise which resolves when the element matching selector is
+             * successfully focused. The promise will be rejected if there is no element
+             * matching selector.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.focus | page.mainFrame().focus(selector)}.
+             */
+            focus(selector) {
+                return this.mainFrame().focus(selector);
+            }
+            /**
+             * This method fetches an element with `selector`, scrolls it into view if
+             * needed, and then uses {@link Page.mouse}
+             * to hover over the center of the element.
+             * If there's no element matching `selector`, the method throws an error.
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | selector}
+             * to search for element to hover. If there are multiple elements satisfying
+             * the selector, the first will be hovered.
+             * @returns Promise which resolves when the element matching `selector` is
+             * successfully hovered. Promise gets rejected if there's no element matching
+             * `selector`.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Page.hover | page.mainFrame().hover(selector)}.
+             */
+            hover(selector) {
+                return this.mainFrame().hover(selector);
+            }
+            /**
+             * Triggers a `change` and `input` event once all the provided options have been
+             * selected. If there's no `<select>` element matching `selector`, the method
+             * throws an error.
+             *
+             * @example
+             *
+             * ```ts
+             * page.select('select#colors', 'blue'); // single selection
+             * page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
+             * ```
+             *
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | Selector}
+             * to query the page for
+             * @param values - Values of options to select. If the `<select>` has the
+             * `multiple` attribute, all values are considered, otherwise only the first one
+             * is taken into account.
+             * @returns
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.select | page.mainFrame().select()}
+             */
+            select(selector, ...values) {
+                return this.mainFrame().select(selector, ...values);
+            }
+            /**
+             * This method fetches an element with `selector`, scrolls it into view if
+             * needed, and then uses {@link Page.touchscreen}
+             * to tap in the center of the element.
+             * If there's no element matching `selector`, the method throws an error.
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | Selector}
+             * to search for element to tap. If there are multiple elements satisfying the
+             * selector, the first will be tapped.
+             *
+             * @remarks
+             *
+             * Shortcut for {@link Frame.tap | page.mainFrame().tap(selector)}.
+             */
+            tap(selector) {
+                return this.mainFrame().tap(selector);
+            }
+            /**
+             * Sends a `keydown`, `keypress/input`, and `keyup` event for each character
+             * in the text.
+             *
+             * To press a special key, like `Control` or `ArrowDown`, use {@link Keyboard.press}.
+             * @example
+             *
+             * ```ts
+             * await page.type('#mytextarea', 'Hello');
+             * // Types instantly
+             * await page.type('#mytextarea', 'World', {delay: 100});
+             * // Types slower, like a user
+             * ```
+             *
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | selector}
+             * of an element to type into. If there are multiple elements satisfying the
+             * selector, the first will be used.
+             * @param text - A text to type into a focused element.
+             * @param options - have property `delay` which is the Time to wait between
+             * key presses in milliseconds. Defaults to `0`.
+             * @returns
+             */
+            type(selector, text, options) {
+                return this.mainFrame().type(selector, text, options);
+            }
+            /**
+             * Wait for the `selector` to appear in page. If at the moment of calling the
+             * method the `selector` already exists, the method will return immediately. If
+             * the `selector` doesn't appear after the `timeout` milliseconds of waiting, the
+             * function will throw.
+             *
+             * @example
+             * This method works across navigations:
+             *
+             * ```ts
+             * import puppeteer from 'puppeteer';
+             * (async () => {
+             *   const browser = await puppeteer.launch();
+             *   const page = await browser.newPage();
+             *   let currentURL;
+             *   page
+             *     .waitForSelector('img')
+             *     .then(() => console.log('First URL with image: ' + currentURL));
+             *   for (currentURL of [
+             *     'https://example.com',
+             *     'https://google.com',
+             *     'https://bbc.com',
+             *   ]) {
+             *     await page.goto(currentURL);
+             *   }
+             *   await browser.close();
+             * })();
+             * ```
+             *
+             * @param selector - A
+             * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors | selector}
+             * of an element to wait for
+             * @param options - Optional waiting parameters
+             * @returns Promise which resolves when element specified by selector string
+             * is added to DOM. Resolves to `null` if waiting for hidden: `true` and
+             * selector is not found in DOM.
+             *
+             * @remarks
+             * The optional Parameter in Arguments `options` are:
+             *
+             * - `visible`: A boolean wait for element to be present in DOM and to be
+             *   visible, i.e. to not have `display: none` or `visibility: hidden` CSS
+             *   properties. Defaults to `false`.
+             *
+             * - `hidden`: Wait for element to not be found in the DOM or to be hidden,
+             *   i.e. have `display: none` or `visibility: hidden` CSS properties. Defaults to
+             *   `false`.
+             *
+             * - `timeout`: maximum time to wait for in milliseconds. Defaults to `30000`
+             *   (30 seconds). Pass `0` to disable timeout. The default value can be changed
+             *   by using the {@link Page.setDefaultTimeout} method.
+             */
+            async waitForSelector(selector, options = {}) {
+                return await this.mainFrame().waitForSelector(selector, options);
+            }
+            /**
+             * Waits for the provided function, `pageFunction`, to return a truthy value when
+             * evaluated in the page's context.
+             *
+             * @example
+             * {@link Page.waitForFunction} can be used to observe a viewport size change:
+             *
+             * ```ts
+             * import puppeteer from 'puppeteer';
+             * (async () => {
+             *   const browser = await puppeteer.launch();
+             *   const page = await browser.newPage();
+             *   const watchDog = page.waitForFunction('window.innerWidth < 100');
+             *   await page.setViewport({width: 50, height: 50});
+             *   await watchDog;
+             *   await browser.close();
+             * })();
+             * ```
+             *
+             * @example
+             * Arguments can be passed from Node.js to `pageFunction`:
+             *
+             * ```ts
+             * const selector = '.foo';
+             * await page.waitForFunction(
+             *   selector => !!document.querySelector(selector),
+             *   {},
+             *   selector
+             * );
+             * ```
+             *
+             * @example
+             * The provided `pageFunction` can be asynchronous:
+             *
+             * ```ts
+             * const username = 'github-username';
+             * await page.waitForFunction(
+             *   async username => {
+             *     const githubResponse = await fetch(
+             *       `https://api.github.com/users/${username}`
+             *     );
+             *     const githubUser = await githubResponse.json();
+             *     // show the avatar
+             *     const img = document.createElement('img');
+             *     img.src = githubUser.avatar_url;
+             *     // wait 3 seconds
+             *     await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+             *     img.remove();
+             *   },
+             *   {},
+             *   username
+             * );
+             * ```
+             *
+             * @param pageFunction - Function to be evaluated in browser context until it returns a
+             * truthy value.
+             * @param options - Options for configuring waiting behavior.
+             */
+            waitForFunction(pageFunction, options, ...args) {
+                return this.mainFrame().waitForFunction(pageFunction, options, ...args);
+            }
+            /** @internal */
+            [(_Page_requestHandlers = new WeakMap(), _Page_inflight$ = new WeakMap(), _Page_screencastSessionCount = new WeakMap(), _Page_startScreencastPromise = new WeakMap(), _Page_instances = new WeakSet(), _Page_getNativePixelDimensions = 
+            /**
+             * Gets the native, non-emulated dimensions of the viewport.
+             */
+            async function _Page_getNativePixelDimensions() {
+                const env_2 = { stack: [], error: void 0, hasError: false };
+                try {
+                    const viewport = this.viewport();
+                    const stack = __addDisposableResource(env_2, new _util_disposable_js__WEBPACK_IMPORTED_MODULE_6__.DisposableStack(), false);
+                    if (viewport && viewport.deviceScaleFactor !== 0) {
+                        await this.setViewport({ ...viewport, deviceScaleFactor: 0 });
+                        stack.defer(() => {
+                            void this.setViewport(viewport).catch(_common_util_js__WEBPACK_IMPORTED_MODULE_4__.debugError);
+                        });
+                    }
+                    return await this.mainFrame()
+                        .isolatedRealm()
+                        .evaluate(() => {
+                        return [
+                            window.visualViewport.width * window.devicePixelRatio,
+                            window.visualViewport.height * window.devicePixelRatio,
+                            window.devicePixelRatio,
+                        ];
+                    });
+                }
+                catch (e_2) {
+                    env_2.error = e_2;
+                    env_2.hasError = true;
+                }
+                finally {
+                    __disposeResources(env_2);
+                }
+            }, _screenshot_decorators = [(0,_util_decorators_js__WEBPACK_IMPORTED_MODULE_5__.guarded)(function () {
+                    return this.browser();
+                })], _util_disposable_js__WEBPACK_IMPORTED_MODULE_6__.disposeSymbol)]() {
+                return void this.close().catch(_common_util_js__WEBPACK_IMPORTED_MODULE_4__.debugError);
+            }
+            /** @internal */
+            [_util_disposable_js__WEBPACK_IMPORTED_MODULE_6__.asyncDisposeSymbol]() {
+                return this.close();
+            }
+        },
+        (() => {
+            const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(_classSuper[Symbol.metadata] ?? null) : void 0;
+            __esDecorate(_a, null, _screenshot_decorators, { kind: "method", name: "screenshot", static: false, private: false, access: { has: obj => "screenshot" in obj, get: obj => obj.screenshot }, metadata: _metadata }, null, _instanceExtraInitializers);
+            if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        })(),
+        _a;
+})();
+
+/**
+ * @internal
+ */
+const supportedMetrics = new Set([
+    'Timestamp',
+    'Documents',
+    'Frames',
+    'JSEventListeners',
+    'Nodes',
+    'LayoutCount',
+    'RecalcStyleCount',
+    'LayoutDuration',
+    'RecalcStyleDuration',
+    'ScriptDuration',
+    'TaskDuration',
+    'JSHeapUsedSize',
+    'JSHeapTotalSize',
+]);
+/** @see https://w3c.github.io/webdriver-bidi/#normalize-rect */
+function normalizeRectangle(clip) {
+    return {
+        ...clip,
+        ...(clip.width < 0
+            ? {
+                x: clip.x + clip.width,
+                width: -clip.width,
+            }
+            : {
+                x: clip.x,
+                width: clip.width,
+            }),
+        ...(clip.height < 0
+            ? {
+                y: clip.y + clip.height,
+                height: -clip.height,
+            }
+            : {
+                y: clip.y,
+                height: clip.height,
+            }),
+    };
+}
+function roundRectangle(clip) {
+    const x = Math.round(clip.x);
+    const y = Math.round(clip.y);
+    const width = Math.round(clip.width + clip.x - x);
+    const height = Math.round(clip.height + clip.y - y);
+    return { ...clip, x, y, width, height };
+}
+
+
+/***/ }),
+
+/***/ "./src/third_party/puppeteer/package/src/common/TimeoutSettings.ts":
+/*!*************************************************************************!*\
+  !*** ./src/third_party/puppeteer/package/src/common/TimeoutSettings.ts ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TimeoutSettings: () => (/* binding */ TimeoutSettings)
+/* harmony export */ });
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _TimeoutSettings_defaultTimeout, _TimeoutSettings_defaultNavigationTimeout;
+const DEFAULT_TIMEOUT = 30000;
+/**
+ * @internal
+ */
+class TimeoutSettings {
+    constructor() {
+        _TimeoutSettings_defaultTimeout.set(this, void 0);
+        _TimeoutSettings_defaultNavigationTimeout.set(this, void 0);
+        __classPrivateFieldSet(this, _TimeoutSettings_defaultTimeout, null, "f");
+        __classPrivateFieldSet(this, _TimeoutSettings_defaultNavigationTimeout, null, "f");
+    }
+    setDefaultTimeout(timeout) {
+        __classPrivateFieldSet(this, _TimeoutSettings_defaultTimeout, timeout, "f");
+    }
+    setDefaultNavigationTimeout(timeout) {
+        __classPrivateFieldSet(this, _TimeoutSettings_defaultNavigationTimeout, timeout, "f");
+    }
+    navigationTimeout() {
+        if (__classPrivateFieldGet(this, _TimeoutSettings_defaultNavigationTimeout, "f") !== null) {
+            return __classPrivateFieldGet(this, _TimeoutSettings_defaultNavigationTimeout, "f");
+        }
+        if (__classPrivateFieldGet(this, _TimeoutSettings_defaultTimeout, "f") !== null) {
+            return __classPrivateFieldGet(this, _TimeoutSettings_defaultTimeout, "f");
+        }
+        return DEFAULT_TIMEOUT;
+    }
+    timeout() {
+        if (__classPrivateFieldGet(this, _TimeoutSettings_defaultTimeout, "f") !== null) {
+            return __classPrivateFieldGet(this, _TimeoutSettings_defaultTimeout, "f");
+        }
+        return DEFAULT_TIMEOUT;
+    }
+}
+_TimeoutSettings_defaultTimeout = new WeakMap(), _TimeoutSettings_defaultNavigationTimeout = new WeakMap();
+
+
+/***/ })
+
+}]);
