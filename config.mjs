@@ -19,7 +19,7 @@ const config = {
   mode: "development",
   devtool: false,
   entry: {
-    inspector: isAB ? "./src/entrypoints/inspector/inspector.ts" : "./inspector.ts",
+    inspector: isAB ? "./entrypoints/inspector/inspector" : "./inspector.ts",
   },
   plugins: [new HtmlWebpackPlugin()],
   output: {
@@ -32,7 +32,7 @@ const config = {
   experiments: {
     css: true,
   },
-  context: path.join(__dirname, isAB ? "" : "src/entrypoints/inspector"),
+  context: path.join(__dirname, isAB ? "./src" : "./src/entrypoints/inspector"),
   resolve: {
     extensionAlias: {
       ".js": [".ts", ".js"],

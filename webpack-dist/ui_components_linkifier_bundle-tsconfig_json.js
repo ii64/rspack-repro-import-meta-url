@@ -1,0 +1,14 @@
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["ui_components_linkifier_bundle-tsconfig_json"],{
+
+/***/ "./ui/components/linkifier/bundle-tsconfig.json":
+/*!******************************************************!*\
+  !*** ./ui/components/linkifier/bundle-tsconfig.json ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"compilerOptions":{"composite":true,"outDir":".","baseUrl":".","rootDir":"../../../../../../../front_end/ui/components/linkifier"},"files":["../../../../../../../front_end/ui/components/linkifier/linkifier.ts"],"references":[{"path":"./css_files-tsconfig.json"},{"path":"./linkifier-tsconfig.json"}]}');
+
+/***/ })
+
+}]);
