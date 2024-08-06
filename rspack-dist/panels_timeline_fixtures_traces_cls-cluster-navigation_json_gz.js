@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_cls-cluster-navigation_json_gz"], {
+"./panels/timeline/fixtures/traces/cls-cluster-navigation.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m0\u001b[0m │ \u001f�\b\u0000\u0000\u0000\u0000\u0000\u0000\u0013Խks\\Ǒ-�Wn�3�]�z،�e�D��\b�\u0003\u0001\u0002-\u0011c\u0010�\u0000�d̈́����Mtg���;w/v��9#Z\u0014\u001a�*�*+�+���������_67\u000f�Ͼ���>;������>�9�y�ų�_�߾��=���g\u0017�\u000f�\u0017ggo6\u000f��\u000f�Ϟ?���������oϟ�}M���?�.�}�K-������\r�I�����G�������������W7�.�\u0018���u�}�����Я�\u001b~�߯����7oo�\u001en�^N��o����f��p�z���5�m,��w�o6g/�\u0006X�N��E\u001b\u0007߹\u0013*��83��~\u000b��7���ݿ6w\u000e��>��2����������e�k]1^���Yp0)r�_m~yy{{}�����<T6�\u0012\u0006��~�w��?l�~��� ol�5\u000f��s|��6ѿ\u001c����P�'�b\u0016�kY&�?�_����w7���\u0007��\u001b/\u001cz��\u0017�hFW�����\r>����ſ�!�c$^}�\u00035���7�w\u001b���׻8�\u0006+�L߿\u0013|����~=�h���\u001d��������bs��/\u001b�t�\r\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

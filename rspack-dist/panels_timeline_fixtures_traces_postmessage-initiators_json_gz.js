@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_postmessage-initiators_json_gz"], {
+"./panels/timeline/fixtures/traces/postmessage-initiators.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\bp��e\u0000\u0003postmessage-initiators.json\u0000�][o\u001bG�~?�\"г6�{W�͉����k�N�\u0001���H\u0013��$jI�9� ��T\u000f��꡺5M�#��]�m�2�TW�����z9��^|�n֫��/~��/���d�|�����fvݝ���~���v˓?OO.fk�����[�.g������\u001f���������\u0007�������ə8=Y���_,�<��1�,�^.~_u��g��\u001f��vf�@m}���C\u0017׷��|�8���5\u0002vO�ֺ\u0007^���[\u001e���\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ �U��~X.���W�x��J&�J�C(?����\u0013��~��Am\u001f-�\fu:{{���O7\u0017�OU6��S߮g\u0017���]�^�o޿Y.~�_\u001dss2j\u001b�\u001f8�%���\\E�Vkm\u001e�=\u001b�����ꒁ��=r^�Yk�7����n�q~�qr�\u0002'�\u0007�\u001e�r���/\u0017w7���X�v�iS\u0002x�� I\u0017\u000b�l�l���ʻ:��'����\u000eI�z��kN�K/�$y��y��x��}�WNA]S�~�K�\u0003B���T�\b#\u001f��T�j3�\u0000�\b\b\r\\x@�n\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

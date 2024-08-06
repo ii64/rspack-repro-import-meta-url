@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_extension-tracks-and-marks_json_gz"], {
+"./panels/timeline/fixtures/traces/extension-tracks-and-marks.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b�Q�f\u0000\u0003extension-tracks-and-marks.json\u0000��]�$�q-���_!��p^ 2�;\u0002f��\u0004\u0001\u0011vI\u0010&����mc��\u0002��L��\u001e��L��FdUg�GUDeT�ʌ�ӒI$f\u0006�+���}����|�~�x������������?�ӫ���\u001e���?��������}|����7\u000f��߾\u001fK\u000eR����y��\u000b񹑟\u000f�7R�����������\u001f�\u001f\u001f����\u0014��\u0018�n��������y���?=ο0���o\u001e����a���ݛO\u000f\u000f��7���c\u00183!����O�w���������_vw�\u0007������x����������/�?�p���瓿�~��۷��/�*����_�=���\u001f\u001fn�����nG{������W�w���7�~���y�����\u001f�_��ۻ��'��P��3�\rFxc�g�7o����:\f�+O~���\u0001Zy'�9��Mh��|��m���O���1�_���\u001fx�H�*~B���|u��S���|uw����ǿ�|��{x�_����\u0014����t|���v��|=��g�>�\u001c����Ɵ;|����?�_<���~�\u0017\u000f������ßo�B\\��D����   ��x��������g|��V���SB*s�\u001b��ç�~_X�}�\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ �߽��/ߏ\u001fdM��A����ݽ�=<w#�ʞ�����y3����\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

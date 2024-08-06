@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_slow-interaction-button-click_json_gz"], {
+"./panels/timeline/fixtures/traces/slow-interaction-button-click.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m0\u001b[0m │ \u001f�\b\b\"usc\u0000\u0003slow-interaction-button-click.json\u0000��iS\\K�-�~��\u0002[�#U��ev�Z$@��\u0017ێ�2!��$�l\u0010����/b&\b�\u0006���N�Sg\u0017 \u0001#<�{\u001f�?�������;5�W��}��?S���_��Q����\u0006?[''��_S����_�i\r��};�\f[��a��/\\���~�������K'?�\u0017���p�}L.?\u001a����|��w��ֻ㣓����\u0018�7�DJy�c�p��߰���s��i��\u0010~I#�\u0010�Ii\u001f�+�tz��>��8�\u0007��?��G�o��֪���Ar�\u001e*��_�W\u0012�W����U�z�Ŝ=\u0019�]��\u0017|��Ǉ�||�}��9��?\u001e�v7���(:(��R��COt|G�����\"^��5Q�k���;gk�\u0007o޿m�a)���{\u001fV;����N���6���{�\u0005�����\u0015�\\\u0006��ҧz���K%�O��M�\u0005�K\\\u0005֌�5T�>ۏ��\u000e��M\\^NxmC��o\u001c_\bJ,Q�uY#�r�ΤSg\u000fT\u0011W\u001e�\u0003~����Ng0�s\r\u001e\u0018\u0005\\z�\u0018�[|z\u000f��f�ק��?\r\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

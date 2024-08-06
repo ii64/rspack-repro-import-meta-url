@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_lantern_render-blocking_trace_json_gz"], {
+"./panels/timeline/fixtures/traces/lantern/render-blocking/trace.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b{p�f\u0000\u0003trace.json\u0000�{o\u001bI�'��~\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ C����Ve�#<�\u0018ز]e�_k��wp�\u0010h2m�M�j��˷Q��7\")f��2R\u0019��̨�\u0002��)���\u0013�����u�]O���o�r�9y��?��\u0007\u000f�y2Y�����rrY�<>�|�\\]���\u001f�L'[����e���&�������\u0017�r2;������¾���0��<.\u001e�l���\u001f\\����k�V�W��|���7��\u0010y�m�(\"ڿq�t���)ׯ'�彾��7_J���+ߗ�Y�F���A��N��;�2�/�\u001f�\u000f��\u0017�   �\b7��q/֫���Y���j���2Y�\u0016%\u0006����,�]�������ݙ�v���-�S2�T��=��/f(���.�T\r����&��;�{2�(w_y�t��~}1_�8D\u0017R�A�\u000f�������b���n��l���\u0012s�冒;\u000e�_i��]���k�����q�;���w��j]~Y����\u001d\u0004$���`\u0003��~|m���]�r�����P��ͧ%���쎯]^��?^.?�'H_i�j�!�xb�h��q��b�Z��i\u001a\u001d\u000b��\u0005��|\u0004�\bj&���v\u001a쭦��Z���fs���[�7�����~���Bz0���~~��w�������p�W�y�A������)���l�����\u0003<�3�q�G��;�ъ���C���NL(+(\u0017�\u001f�~_�e�J�b6�L>-�٣O?\u001e��ϓ�������\u0019��\u000e�Ք�i�i\u001e����|�b\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

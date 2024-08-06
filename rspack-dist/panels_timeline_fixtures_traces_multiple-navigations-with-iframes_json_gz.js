@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_multiple-navigations-with-iframes_json_gz"], {
+"./panels/timeline/fixtures/traces/multiple-navigations-with-iframes.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b�cy`\u0000\u0003multiple-navigations-with-iframes.json\u0000ܽks\u001bɑ6���\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ \u0007?k�u��\u001bER3<�[P����x�\u0001�-   ;\u0014�\u0005A��\u000e��S� �3\u001b]��F�l�v��\u0014)<Y���>���<�-?�\u001e<�����ku�����ٷo���_�\u000e.g�������jv5[�\u000e�=���˲�]]�_=;��%|�u�����s��tL=;XůX���׳=�6>�hyV�\\U�j�z6���\u0013��\u000f�ȳ��b����\u0003���W������\u001f�\u0006\u001f��*������n��~_-��/��7v\u0000 �a�\u0001�\u0018ۊ>1��_������۝���X!3\u001f���?�\u0016_�-n�Œ��;[�s�L��=g�=6���s���f����}dq�Gg����\u001f}�__��r�9�Պ�r��>/\u0017w7W_,��}�R?��\u000f��}}<ڏ\u0017���\b\u001f?�\u0001���\u000f�m��x�3�\u001eAz�]�\u001cW��\u0003����\u0017�]1�5��gu~]�E�/��ݽ{3���嗫�g�\u000f����\f�����\n\u001b[31m      \u001b[0m \u001b[2m3\u001b[0m │ ����R�g\u001b�S�r���.�?No>-g��bN��Z�n���s�$��U�Ɋ�\u001f�PBk����v��.Ƕ�݋��~��.r���o� ;V�H\u0005�k\u0004>�Q���\u0014?�C�>:{��W\u0018k�a{Ku��/.�\u0019��� LJ�\b\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

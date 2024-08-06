@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_web-dev-with-advanced-instrumentation_json_gz"], {
+"./panels/timeline/fixtures/traces/web-dev-with-advanced-instrumentation.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\bUFRe\u0000\u0003web-dev-with-advanced.json\u0000�ks\u001c7�&�}~�5>�;�o�,�ڰe�,;\u0011\u001b\u001b�\u0016ٲ��HM�i�������f_��\u0002\u001a�,\u0014��sv\u000eE��\u0007 �=���<y��z��\\>�}y����'���ѓ'�����7\u0017�_�?�}m��f�ii�䋻?\u0016�?/W_t�����\\.���/.>-׋��z��÷vw�a�\\\\]l�|���\u000f��~<���+�'����ӯ�O����_\u000f���V߬n��[�~\\\\ߌ�ቐ���Sa\u0012\u0011�~�|{w��\u001d��\u0019'����!i\u0000�l>�Ϸ�\u001f_ܮ���n�o�����7���\u0001Dh�D�z���Z��.�W*����������O[�L�0�`,�f�����_\u0007\u0016\u0012ݰSi����+���{\u001c\u0015�������������Q?Y�\b��,��Zey\u0018�>\\��{\u001d�L�6<\u0015����r��⛏��������⥋�?���\u001b\u000bb{��$X��tž]����Ļ���f:%,(oRe���\u001e�\u000e\u000eg\r�)\u001a��B�J�̓��ce\u001aJ稜}���K�5��������~5��\u001b.\u0012��\u001f�W׋I>;�*�k/!6a�H��\u001f\u0010�Gz`����$�J.\u0002\u00103�6\u00069\u001c�oޘ\u0013\u0014�\u0011̄B��!L��Vz�P��AB4���ś\u0019�e�LDjtY�\u001akdj\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ �,@���,�ԍ����%�(W�2�љW%�F'^�IҀ>,F�T,�)l�،_�\u000f\u0011�<\u0015я�O��?_޼_�\u001f~�\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

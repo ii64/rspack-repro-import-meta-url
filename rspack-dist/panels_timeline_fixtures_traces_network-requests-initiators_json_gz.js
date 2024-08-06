@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_network-requests-initiators_json_gz"], {
+"./panels/timeline/fixtures/traces/network-requests-initiators.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b�o�f\u0000\u0003initiators.json\u0000�]�o\u001b7��޿\"З~q��4P\\��5�I���^�ba���\u0011\"Kޑ�lZ����\u001a\u001e�D\u000e)Q~\u0014�M�'�<���Wﶜ�\u0007�Y����\u001f^��M'���\u001f������d4��՟�������\u0012.0}]��\u0005�(�>���7L��[|�����s5��F���vTv\\ξN�/�Wz�&�f�\u0013��}�W����<����UU����߁e�U\u0003�}5�\u0019�͏_T����\u001cϦ�\u001f���Л�O��C��_�~u�?��7�\u001b�����]Y������3����f\u000f��ߤA���e��^����[�ᠷ_��f˿�/.��[�hr{7�\u000eg�-V�X1E��z��#q�U���봬���Yl��l��\u001f�\u0017��۹��\u000feu?�.\u0017��\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ A�\u000e�-ǃ��A�=��\\�D����|��8.��܇���~\u001c�iy9�ٶ�',L�VG�����]�UX����y5�tr?�鿯��q���<�N���ǃߵ��FE�\u0000b�yW룰��=\u0000��\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ �.�c�}y�\u001f\u001c\u001ff�{Nd\u0014����� �ܭ�|�\u00002�VMk�j�N�]�C��1\u0014�z2����vR};\u001b��y�ix��\u001b\fD*��;�'`�c�ɮ�\u000f_c�_��\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

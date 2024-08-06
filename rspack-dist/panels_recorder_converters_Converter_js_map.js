@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_recorder_converters_Converter_js_map"], {
+"./panels/recorder/converters/Converter.js.map": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Expected ';', '}' or <eof>\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ {\"version\":3,\"file\":\"Converter.js\",\"sourceRoot\":\"\",\"sources\":[\"../../../../../../../front_end/panels/recorder/converters/Converter.ts\"],\"names\":[],\"mappings\":\"AAAA,4DAA4D;AAC5D,yEAAyE;AACzE,6BAA6B\",\"sourcesContent\":[\"// Copyright 2023 The Chromium Authors. All rights reserved.\\n// Use of this source code is governed by a BSD-style license that can be\\n// found in the LICENSE file.\\n\\nimport type * as Models from '../models/models.js';\\nimport type * as PuppeteerReplay from '../../../third_party/puppeteer-replay/puppeteer-replay.js';\\n\\nexport interface Converter {\\n  stringify(flow: Models.Schema.UserFlow): Promise<[string, PuppeteerReplay.SourceMap|undefined]>;\\n  stringifyStep(step: Models.Schema.Step): Promise<string>;\\n  getFormatName(): string;\\n  getFilename(flow: Models.Schema.UserFlow): string;\\n  getMediaType(): string|undefined;\\n  getId(): string;\\n}\\n\"]}\n\u001b[31m      \u001b[0m   · \u001b[35;1m          ─\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_selector-stats_json_gz"], {
+"./panels/timeline/fixtures/traces/selector-stats.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b�Z*f\u0000\u0003selector-stats.json\u0000�[w۸�.�޿��_v��$E�\u0001gԃ�ĉ�r�ĩT�^gd�\u0012c+�%�.v�=V��\u0006)�\u0000h�\u0002�)\u0012���9{%�e��\u000401������|0L�_���bo����?~���\u0006�s���ٛ\u000e.ӽ������*������p��/|�|�.\u0007��r����Mˋy:\u0018}���h��B��:��x���<�[���?8�����9�\u001f�g7�t�z0���2�(��B�Ԇ�|�NG�|���X\u0005~�i�9�f�ɇt~=\u001e��\u0017`\u001e�\"AP�#_�g��瓷�_K��\"�k�.Ɠ\u0011�w\u001by#�D�#�1�q4���-���\u001c�\u0019�_j*    ۰�^\\�����\u000b��ς�~g!Z��$8�\u001bOǓ��l�-�#��̨��\u001b�ZϾ<��.��C�g�   ���\u001f���\u000f�˫�xz�\u0001�O���ͦR�*�Yz}������!��@�qT���\u000fo���\r�\u0007���<�d��B�J��\u0004�M\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ \u000bZO\u0017ύ���G��<��\u0006��\u0016��t��\u0002��'$�B>�����l5\u001d��\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

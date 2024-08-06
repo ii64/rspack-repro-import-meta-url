@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_basic_cpuprofile_gz"], {
+"./panels/timeline/fixtures/traces/basic.cpuprofile.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m0\u001b[0m │ \u001f�\b\b�\b{e\u0000\u000300.cpuprofile\u0000�]�n$�q�\u0015�O6@kX�\u0019�5o�e\u0003~�,�ғ�XP3���8��\u0000k,���&���\u0013\u0011'2#���z5쪬��\u0013׌ʪ����������_~9��|�q:=�t}{��\u000f�_�'\u001f9���ݧ����?�|?�����99=y��p��鿞�89{��������?no�����뇓�������ۗ�Ñ_OO~�y���owO'\u001fϞ��ts��a}����t���������G��Ձ��4\u001fo��\u000fw׷�\\�ܽ{�v������v�.�<+y<SX<��w���y�����Ϗ���{z��?�?�3})2������iuQ�|���~��{���~����o�?�^�\u001b�~����e��������չ��=�\u001f(f#y����Bv�0{�g��Cv����������~���0�ϯ�*�/\u0014�/�|_r|������s�\u0018^UV�2|�g�Jgxs���>������������iL���\u001cͮ@�����\u0019Џ�޽ۄ��w�w��oo��~�������\u0010~���\u001fn~� {s��u�������ׯ�v�\b`�/?�Og���ӓ���7\u001bF�t�L�%�of}��9�>�\u001e�\\��^��L\u0017�����/�(����lEq�2���2!\u000fL\u001b���ua!Ӆ`�ߞnn\u000b!.�W�x����å,�Ň�\u0007!�.7,oO��:��<\u0013e�����\u000f��q�O�,޾XPX��˂�g\u001e\u001f7����\r|�<?[]����ó��>?G���\u0014�x����K�1�nl2����K��\u000f:�?6ICge�y�}����s9p��\u0001��Ϫ�a�٨��\u0005:��W�\u0006J�Z��$�\u001e\u0004�����U�D)(��3\rd5>SI\u0011L�IU^8K\bi�$�,�����\u0002ꆔ+�k4�����d�2�s/P<)\u001d�*\r\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_instant-animation-events_json_gz"], {
+"./panels/timeline/fixtures/traces/instant-animation-events.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b�K(f\u0000\u0003instant-animation-events.json\u0000̝[s�ƒ���W������7[�\u001cU9�˗s��Ԗ�&a�e�T@�>�T���\u0014�\u001e\u0010\u0003b�&�<$�L\u0013\u001fzfzzz���,K��շd�mg\u0017?���~���<��~�k���'�������!Ig?�-�����}�͗�l>{V|(�M���f�ӳ�í��o�����\u000b�l�\u0015�u_L�~�����E���M���u��)�\u0019{| ��������v�m��r�JF\u001f��)���K�K��$}�[J&��%�3i�gަ����e���fs��u�^�%���㌭V䄬����j���hI\u000b�s�\f����`����uz����n���j��2��,{��{�\u0004��'u5����_��k�R\u001c9+)y���g������������t��!<Q�\u0014�m4�\u0003?����j��\u0005�������/n��#o^�m\u0016_�܋�\f���\u0019xa�ra)�.����:5z�I�/�f�^\u001e�;���\r=媇\u0013v���\u001f^��e�}�W����V�\u0004U�r��Џ�^�\u000b3��W\u000b�R�>�~K�7����t��\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ ���G~�~ڛ�\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

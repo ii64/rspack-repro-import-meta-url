@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_basic-stack_json_gz"], {
+"./panels/timeline/fixtures/traces/basic-stack.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m0\u001b[0m │ \u001f�\b\bwN�d\u0000\u0003basic-stack.json\u0000ܽi�\u001cɕ-�}~E��K��K}��J�\u0002�%��~\u0003<\f�$\u0019U�\u0010���Lj�����Efx�\u001d��t�8�p��R��b\u001e37�v�s���\u0017��7�7��}����ŗ��������yqs�K�\u000f����ͻ͋/_<���Ç�������c���/�m\u001eo��<޼�b�C���on޼���/^|��������͋/�\u0017/\u001ew�^�b��/\u000e�����p������ܾ_�˴\u000f���\u0019���ݻ\u000fw\u000f��wG��{����*�O��_���m^~��\u001f�%e�N9�?���o޿��\u001f���~jo�����o�ѫMjw��K�b�����34�}�:CO_��_o߾!|��/��م���۷��uw��ͽ�\u001c)��đ�.{|���q�w��������}���\re�6X?����׻������r������&��Y��}����\u0005����\u0003тؐ\\�?k�\u001d�as����\u001b�\u00013�\u0013����������y{��}>��k�o>aPO\u0002`�����\u0000������������ᓿn�   �=�G���ם�e��O��ק�꘵�����>~x���=:8\u0013²���\u000f�|ؼ�{��aŎ\u000e��p~�}m\u0017�9\u000b���\u000e�����ͫ��7�y��߼��|���c���?V����;�޾�������+\u000e@����Ǜ���~��\r[��q3�G�\u0012m����ޔ?��ʪU�9:\u0006B��\u0010\u0006\u0019`�\r\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

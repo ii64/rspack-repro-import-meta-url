@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_forced-layouts-and-no-gpu_json_gz"], {
+"./panels/timeline/fixtures/traces/forced-layouts-and-no-gpu.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\br@7a\u0000\u0003many-forced-layouts.json\u0000�]�r\u001bG�}߯��Ʈ{e�mt�UČFa���pL0 �m!L\u0011\\\u0000�W��oV���\u0006�\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ ]�\u0004\u0004���\u0001\u0003�SY�̓���8�-]�=���z��9{z��}vs�,��|rv1[�\u001b�矚��r���=����㲙]������|ķ�\u001e�c~y�Tjm��O���������'�����\u001f���f�,�>�_?�J��'��\u0013�-\u0017��\u0018\u001ehB7��*����o�],��5���f�\u0006+\u0000mJ���\\|j�_��\u0010\u000f��������b5_/�\f\u000f'+�}eti�ݓ��Vi��d�����E��#��E��=.��__<c�dk�� ��������f�ٶsq?\u000f<Yr=9\u001cyGo�m}�#��]U\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ ݰMw�\u001f6�ۇ����Wl\u0003/ޔ\u0003O~6��������m�e�0M\u000b��b�l\u001e�\u0001»�K�ɡ0$\u0011|\u0005  �ܧ�m�0��x�\\\\4�՘\u0001�Vݝ���g�ᕞ�\u001fo�����z���螷7�y�C\u0000�\u001e������X\\_����{d�sZ��>��Q\u0006�Q�\u0011��ߏ��oqٜϯon��\u001f�_p���u��]���̮V\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

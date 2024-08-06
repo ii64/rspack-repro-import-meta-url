@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_basic_json_gz"], {
+"./panels/timeline/fixtures/traces/basic.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\bN�|c\u0000\u0003basic.json\u0000͘[o�0\u0014���)\u0010��j�\u001b�\u001b�Ly�Vm��0U�\u0017�\u0006�`d��R��ϐ4  ��\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ \u001d(\u000fI�1�?��9\u0007;��\u001c��~\u001c�\u0015��r/�{�-�Z�+��.�Rj��}��e)Lm_,�҈T\u0018��:\u001eF���\"]4�]W��;^�Yj�>�`g0�aߪ\u0011��n��+Y�C��WR�\u0016Y1\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ \u001fd->�H_�w�H�\u001e\u0011���G��D\\i������f�)�F�3ޏ�c�+R�RU�QzD�N�`�\u0003�W�W�f4��3\u0003r�+���R�eK9�/\u0011A���S�vc�s�W�}�NQ� E>;-�v%��\u001fX��U���\u0016��/\u0011 =Cs:ԎW������E�X~��jS����6Ͷ�c�o��\u0002�I��*U��\u0014&\u0000\u0010\u001c�~,ﮭ[� \u000e��L�B�O��wr�\u0003��YH'������p��)-�N/F��z0   p7|9e���;\u0011���\u0007o\\�\u0001n\u0007�O  �Y vg�\u001et�VKYU\u0003\"��A���\u0007�j;�8x�;'?\u001c��a#��\u0006��mJ�m��\u001030\u0000m��E%��H�Qbob�a\u0011؂�|l�a�85䀘lZ��@\u001c���U[�k-�\u001b��y��:���O���9G�\u000f�Ԥ(�\f�0����Ā �x�K\u0000�i�p���\u0007>x�k�ye�^�{����!+�\u001e��>\u0002\"\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

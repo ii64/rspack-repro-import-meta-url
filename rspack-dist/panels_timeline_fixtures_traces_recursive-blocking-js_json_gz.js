@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_recursive-blocking-js_json_gz"], {
+"./panels/timeline/fixtures/traces/recursive-blocking-js.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\bL�Ma\u0000\u0003recursive-blocking-js.json\u0000�ks[G�&�}~�B�=v�/��\u000be+V�\u0014�ܽ�n����#\u0011-\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ �\u0002�����[�\u0010 ��,\"qNe    ��8�m�\u0000<'��O���x����?z�x4��x���=z<\u001d}m�=^�5��n�\u001f����_�\u0018-�m���h9z����/���f4>�\\�������w_N��kn���,���W�g`Ώ��~���g��_�f��h2��\u0001���~�w�t���>�5ʊ���r>�ڜ�z�{�*\u000fR2o\u000f���������l1Y��\u001fհ���f��\u0013}~9�\u001a\u0013>�T��\u0019�\u000f=��^��]��a\u001e|8o\u001f������������f:��l��J#E��3��<��nN�䪹���ʭ�N�~��E��CxƋ�/�U�\u0002�\n\u001b[31m      \u001b[0m \u001b[2m3\u001b[0m │ ~�\u0007�{�u�����ۿ9�/g���\u0002:��CU��\u0013�o��&\u0017M�3`��G�q#� \u0015?�\u001a����a��\u001ej\u0010�\u0018���*�Ł��G_5��۳\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

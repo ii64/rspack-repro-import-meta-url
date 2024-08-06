@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_lcp-web-font_json_gz"], {
+"./panels/timeline/fixtures/traces/lcp-web-font.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\b$6�e\u0000\u0003Trace-lcp-web-font.json\u0000�][s۸�~�_1��\\�;ભ]ǉ3ޚ$>���V��r�\u0012cs#K:\u0014�Lfj��/�\u001bѤ\u0001\u0011\u0012D�x���,�\u001f�\u001b��F�ß'e�\u000e�w�ٸ�������?O��N����8}�NNOf���4+N�zq2HK����CV�ôLO^��T�\u0017Y:�Y���dz�_�`��\u000fON�\u0017'������\u0017O=�|�0���r�Ǔ��<\u0011��   ��7���,+>��x�G\u0012Υ\\=�������x�\u0015�?�\u001e,�?�<d7���\u0017_\u0018s�Bl�k�~:�[�\u00023Q=t��������)돗�������0��mE����:\u001fe�M�oY���[R/�GyzUL��{\u001c��� �yc�S�\"��LF\u0017�\"�+&��p9�X\u0000���*��$\u001d�4\u001b��q��\"��:���߭|�\u001e&ŏ���\"��R��=�����M���ڿd�c>��z\u0018��W��=^k\u0000���ob�),����G\u0013@�\u0006��\u001f\u0002B�\f�:�4h\u001a�1�PC\u001d�/�uH��T�H�l�f\u0012�\u0007�\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m2\u001b[0m │ \u001d�z�=D���_�������{��Z�\u0013��2_|\u0015k����of�`2\u001e�v���XO�H�m!\\�T�z�V o�3�g��(\u001b����r�}M�R�|,�S}e\u001e3��F��y��>���y>�Ng��\u000f���\u0017�����Dk�c\"�X.��%�\bB\u0005%Q`�P��\u000fS\n\u001b[31m      \u001b[0m \u001b[2m3\u001b[0m │ lÔ(\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

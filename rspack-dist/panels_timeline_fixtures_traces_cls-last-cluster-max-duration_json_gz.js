@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_cls-last-cluster-max-duration_json_gz"], {
+"./panels/timeline/fixtures/traces/cls-last-cluster-max-duration.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m0\u001b[0m │ \u001f�\b\b��b\u0000\u0003cls-last-cluster-max-duration.json\u0000��[s\\Ǒ5\f��'x37z�:\u001f\u0014�\\���X\u0011\u001e�a��}\u0011\u000e\u0007\u0003\u0002�\"< �\u0001@ɚ    ��7k7�w&����{�`���(Qh�����<���W��'��������y��_�����\u000f�\u000f�������՗�n~:��aw��\u001f_�:=���x�����������\u0017w?t��zwr�f��/^}xG��\u001f�\u001f��^}�K-�W��\r�J���\u0017�}�W��v}�����?N�/1��b\u001d}ߟv�g��c�0�\u001c6}߻���7����\u000fìлhc�;�����z�������\u001a�5���\u001d���?|<z\u001f�o\u001b�u^ d\u000f�w)?��_�;�8;~+��Z�G;ɶ��b�������u�\u001cZ\u001f��=F�6��\u0017�%��ݏ�]]]����\ryql�%xݲ-hٵ\f\u000e�~��%�����t\u0007U\u0017�/\u0003�?�wϗ8�:�n�w��W\u001eq\u0007����5}u����������A�<Z�\u0007����d]}��3����\u00067���������������>����\u000e��O��q_�Ŋ��i��&&µ/����|�Cl�)m���g���N�.�n�B\u0014_�Q_9\u0014��$\u000e�7��:������\u0017����������ۓ�\u0017��돷�\r\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

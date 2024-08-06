@@ -1,0 +1,979 @@
+"use strict";
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_emulation_DeviceModeToolbar_js"], {
+"./panels/emulation/DeviceModeToolbar.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  DeviceModeToolbar: function() { return DeviceModeToolbar; }
+});
+/* harmony import */var _core_common_common_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/common/common.js */ "./core/common/common.js");
+/* harmony import */var _core_host_host_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/host/host.js */ "./core/host/host.js");
+/* harmony import */var _core_i18n_i18n_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/i18n/i18n.js */ "./core/i18n/i18n.js");
+/* harmony import */var _core_platform_platform_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/platform/platform.js */ "./core/platform/platform.js");
+/* harmony import */var _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../models/emulation/emulation.js */ "./models/emulation/emulation.js");
+/* harmony import */var _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../ui/legacy/legacy.js */ "./ui/legacy/legacy.js");
+/* harmony import */var _ui_visual_logging_visual_logging_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../ui/visual_logging/visual_logging.js */ "./ui/visual_logging/visual_logging.js");
+/* harmony import */var _mobile_throttling_mobile_throttling_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mobile_throttling/mobile_throttling.js */ "./panels/mobile_throttling/mobile_throttling.js");
+/* harmony import */var _components_components_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/components.js */ "./panels/emulation/components/components.js");
+/* harmony import */var _deviceModeToolbar_css_legacy_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./deviceModeToolbar.css.legacy.js */ "./panels/emulation/deviceModeToolbar.css.legacy.js");
+// Copyright 2016 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+function _class_call_check(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+function _defineProperties(target, props) {
+    for(var i = 0; i < props.length; i++){
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
+function _create_class(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+}
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
+
+
+
+
+
+
+
+
+
+
+var UIStrings = {
+    /**
+     * @description Title of the device dimensions selection iteam in the Device Mode Toolbar.
+     * webpage in pixels.
+     */ dimensions: 'Dimensions',
+    /**
+     * @description Title of the width input textbox in the Device Mode Toolbar, for the width of the
+     * webpage in pixels.
+     */ width: 'Width',
+    /**
+     * @description Title of the height input textbox in the Device Mode Toolbar, for the height of the
+     * webpage in pixels. 'leave empty for full' is an instruction to the user - the webpage will be
+     * full-height if this textbox is left empty.
+     */ heightLeaveEmptyForFull: 'Height (leave empty for full)',
+    /**
+     * @description Tooltip text for a drop-down menu where the user can select the zoom percentage of
+     * the webpage preview.
+     */ zoom: 'Zoom',
+    /**
+     * @description Tooltip tip for a drop-down menu where the user can select the device pixel ratio
+     * (the ratio between the physical pixels on a screen and CSS logical pixels) of the webpage
+     * preview.
+     */ devicePixelRatio: 'Device pixel ratio',
+    /**
+     * @description Tooltip tip for a drop-down menu where the user can select the device type e.g.
+     * Mobile, Desktop.
+     */ deviceType: 'Device type',
+    /**
+     * @description Tooltip text for a button to disable Experimental Web Platform Features when they are enabled.
+     */ experimentalWebPlatformFeature: '"`Experimental Web Platform Feature`" flag is enabled. Click to disable it.',
+    /**
+     * @description Tooltip text for a button to enable Experimental Web Platform Features when they are disabled.
+     */ experimentalWebPlatformFeatureFlag: '"`Experimental Web Platform Feature`" flag is disabled. Click to enable it.',
+    /**
+     * @description Tooltip text for a 'three dots' style menu button which shows an expanded set of options.
+     */ moreOptions: 'More options',
+    /**
+     * @description A context menu item in the Device Mode Toolbar. This is a command to resize the
+     * webpage preview to fit the current window. The placeholder is the percentage of full-size that
+     * will be displayed after fitting.
+     * @example {30.0} PH1
+     */ fitToWindowF: 'Fit to window ({PH1}%)',
+    /**
+     * @description A checkbox setting that appears in the context menu for the zoom level, in the
+     * Device Mode Toolbar.
+     */ autoadjustZoom: 'Auto-adjust zoom',
+    /**
+     * @description A menu item in the drop-down box that allows the user to select the device pixel
+     * ratio. Labels the default value which varies between device types, represented by the
+     * placeholder, which is a number. In the Device Mode Toolbar.
+     * @example {4.3} PH1
+     */ defaultF: 'Default: {PH1}',
+    /**
+     * @description Command to hide the frame (like a picture frame) around the mobile device screen.
+     */ hideDeviceFrame: 'Hide device frame',
+    /**
+     * @description Command to show the frame (like a picture frame) around the mobile device screen.
+     */ showDeviceFrame: 'Show device frame',
+    /**
+     * @description Command to hide a display in the Device Mode Toolbar that shows the different media
+     * queries for the device, above the device screen.
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries
+     */ hideMediaQueries: 'Hide media queries',
+    /**
+     * @description Command to show a display in the Device Mode Toolbar that shows the different media
+     * queries for the device, above the device screen.
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries
+     */ showMediaQueries: 'Show media queries',
+    /**
+     * @description Command in the Device Mode Toolbar to hide a virtual ruler (for measuring),
+     * displayed above and next to the device screen.
+     */ hideRulers: 'Hide rulers',
+    /**
+     * @description Command in the Device Mode Toolbar to show a virtual ruler (for measuring),
+     * displayed above and next to the device screen.
+     */ showRulers: 'Show rulers',
+    /**
+     * @description Command in the Device Mode Toolbar to remove the drop-down menu from the toolbar
+     * that lets the user override the device pixel ratio of the emulated device.
+     */ removeDevicePixelRatio: 'Remove device pixel ratio',
+    /**
+     * @description Command in the Device Mode Toolbar to add the drop-down menu to the toolbar
+     * that lets the user override the device pixel ratio of the emulated device.
+     */ addDevicePixelRatio: 'Add device pixel ratio',
+    /**
+     * @description Command in the Device Mode Toolbar to add the drop-down menu to the toolbar
+     * that lets the user set the device type (e.g. Desktop or Mobile).
+     */ removeDeviceType: 'Remove device type',
+    /**
+     * @description Command in the Device Mode Toolbar to add the drop-down menu to the toolbar
+     * that lets the user add the device type (e.g. Desktop or Mobile).
+     */ addDeviceType: 'Add device type',
+    /**
+     * @description A context menu item in the Device Mode Toolbar that resets all settings back to
+     * their default values.
+     */ resetToDefaults: 'Reset to defaults',
+    /**
+     * @description A menu command in the Device Mode Toolbar that closes DevTools.
+     */ closeDevtools: 'Close DevTools',
+    /**
+     * @description Title of the device selected in the Device Mode Toolbar. The 'response' device is
+     * not a specific phone/tablet model but a virtual device that can change its height and width
+     * dynamically by clicking and dragging the sides. 'Response' refers to response design:
+     * https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
+     */ responsive: 'Responsive',
+    /**
+     * @description A context menu item in the Device Mode Toolbar that takes the user to a new screen
+     * where they can add/edit/remove custom devices.
+     */ edit: 'Edit…',
+    /**
+     * @description Text describing the current orientation of the phone/device (vs. landscape).
+     */ portrait: 'Portrait',
+    /**
+     * @description Text describing the current orientation of the phone/device (vs. portrait).
+     */ landscape: 'Landscape',
+    /**
+     * @description Title of button in the Device Mode Toolbar which rotates the device 90 degrees.
+     */ rotate: 'Rotate',
+    /**
+     * @description Fallback/default text used for the name of a custom device when no name has been
+     * provided by the user.
+     */ none: 'None',
+    /**
+     * @description Tooltip of the rotate/screen orientation button.
+     */ screenOrientationOptions: 'Screen orientation options',
+    /**
+     * @description Tooltip for a button which turns on/off dual-screen mode, which emulates devices
+     * like tablets which have two screens.
+     */ toggleDualscreenMode: 'Toggle dual-screen mode',
+    /**
+     * @description Tooltip tip for a drop-down menu where the user can select the device
+     * posture e.g. Continuous, Folded.
+     */ devicePosture: 'Device posture'
+};
+var str_ = _core_i18n_i18n_js__WEBPACK_IMPORTED_MODULE_2__.i18n.registerUIStrings('panels/emulation/DeviceModeToolbar.ts', UIStrings);
+var i18nString = _core_i18n_i18n_js__WEBPACK_IMPORTED_MODULE_2__.i18n.getLocalizedString.bind(undefined, str_);
+/**
+ * Even though the emulation panel uses all UI elements, the tooltips are not supported.
+ * That's because the emulation elements are rendered around the page context, rather
+ * than in the DevTools panel itself. Therefore, we need to fall back to using the
+ * built-in tooltip by setting the title attribute on the button's element.
+ */ function setTitleForButton(button, title) {
+    button.setTitle(title);
+    button.element.title = title;
+}
+var DeviceModeToolbar = /*#__PURE__*/ function() {
+    "use strict";
+    function DeviceModeToolbar(model, showMediaInspectorSetting, showRulersSetting) {
+        var _this = this;
+        _class_call_check(this, DeviceModeToolbar);
+        var updateToolbarsEnabled = function updateToolbarsEnabled() {
+            var enabled = model.toolbarControlsEnabledSetting().get();
+            leftToolbar.setEnabled(enabled);
+            mainToolbar.setEnabled(enabled);
+            rightToolbar.setEnabled(enabled);
+            modeToolbar.setEnabled(enabled);
+            optionsToolbar.setEnabled(enabled);
+        };
+        _define_property(this, "model", void 0);
+        _define_property(this, "showMediaInspectorSetting", void 0);
+        _define_property(this, "showRulersSetting", void 0);
+        _define_property(this, "deviceOutlineSetting", void 0);
+        _define_property(this, "showDeviceScaleFactorSetting", void 0);
+        _define_property(this, "showUserAgentTypeSetting", void 0);
+        _define_property(this, "autoAdjustScaleSetting", void 0);
+        _define_property(this, "lastMode", void 0);
+        _define_property(this, "elementInternal", void 0);
+        _define_property(this, "emulatedDevicesList", void 0);
+        _define_property(this, "persistenceSetting", void 0);
+        _define_property(this, "spanButton", void 0);
+        _define_property(this, "postureItem", void 0);
+        _define_property(this, "modeButton", void 0);
+        _define_property(this, "widthInput", void 0);
+        _define_property(this, "heightInput", void 0);
+        _define_property(this, "deviceScaleItem", void 0);
+        _define_property(this, "deviceSelectItem", void 0);
+        _define_property(this, "scaleItem", void 0);
+        _define_property(this, "uaItem", void 0);
+        _define_property(this, "experimentalButton", void 0);
+        _define_property(this, "cachedDeviceScale", void 0);
+        _define_property(this, "cachedUaType", void 0);
+        _define_property(this, "xItem", void 0);
+        _define_property(this, "throttlingConditionsItem", void 0);
+        _define_property(this, "cachedModelType", void 0);
+        _define_property(this, "cachedScale", void 0);
+        _define_property(this, "cachedModelDevice", void 0);
+        _define_property(this, "cachedModelMode", void 0);
+        this.model = model;
+        this.showMediaInspectorSetting = showMediaInspectorSetting;
+        this.showRulersSetting = showRulersSetting;
+        this.deviceOutlineSetting = this.model.deviceOutlineSetting();
+        this.showDeviceScaleFactorSetting = _core_common_common_js__WEBPACK_IMPORTED_MODULE_0__.Settings.Settings.instance().createSetting('emulation.show-device-scale-factor', false);
+        this.showDeviceScaleFactorSetting.addChangeListener(this.updateDeviceScaleFactorVisibility, this);
+        this.showUserAgentTypeSetting = _core_common_common_js__WEBPACK_IMPORTED_MODULE_0__.Settings.Settings.instance().createSetting('emulation.show-user-agent-type', false);
+        this.showUserAgentTypeSetting.addChangeListener(this.updateUserAgentTypeVisibility, this);
+        this.autoAdjustScaleSetting = _core_common_common_js__WEBPACK_IMPORTED_MODULE_0__.Settings.Settings.instance().createSetting('emulation.auto-adjust-scale', true);
+        this.lastMode = new Map();
+        this.elementInternal = document.createElement('div');
+        this.elementInternal.classList.add('device-mode-toolbar');
+        this.elementInternal.setAttribute('jslog', "".concat(_ui_visual_logging_visual_logging_js__WEBPACK_IMPORTED_MODULE_6__.toolbar('device-mode').track({
+            resize: true
+        })));
+        var leftContainer = this.elementInternal.createChild('div', 'device-mode-toolbar-spacer');
+        leftContainer.createChild('div', 'device-mode-toolbar-spacer');
+        var leftToolbar = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.Toolbar('', leftContainer);
+        this.fillLeftToolbar(leftToolbar);
+        var mainToolbar = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.Toolbar('', this.elementInternal);
+        mainToolbar.makeWrappable();
+        this.widthInput = new _components_components_js__WEBPACK_IMPORTED_MODULE_8__.DeviceSizeInputElement.SizeInputElement(i18nString(UIStrings.width), {
+            jslogContext: 'width'
+        });
+        this.widthInput.addEventListener('sizechanged', function(param) {
+            var width = param.size;
+            if (_this.autoAdjustScaleSetting.get()) {
+                _this.model.setWidthAndScaleToFit(width);
+            } else {
+                _this.model.setWidth(width);
+            }
+        });
+        this.heightInput = new _components_components_js__WEBPACK_IMPORTED_MODULE_8__.DeviceSizeInputElement.SizeInputElement(i18nString(UIStrings.heightLeaveEmptyForFull), {
+            jslogContext: 'height'
+        });
+        this.heightInput.addEventListener('sizechanged', function(param) {
+            var height = param.size;
+            if (_this.autoAdjustScaleSetting.get()) {
+                _this.model.setHeightAndScaleToFit(height);
+            } else {
+                _this.model.setHeight(height);
+            }
+        });
+        this.fillMainToolbar(mainToolbar);
+        var rightContainer = this.elementInternal.createChild('div', 'device-mode-toolbar-spacer');
+        var rightToolbar = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.Toolbar('device-mode-toolbar-fixed-size', rightContainer);
+        rightToolbar.makeWrappable();
+        this.fillRightToolbar(rightToolbar);
+        var modeToolbar = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.Toolbar('device-mode-toolbar-fixed-size', rightContainer);
+        modeToolbar.makeWrappable();
+        this.fillModeToolbar(modeToolbar);
+        rightContainer.createChild('div', 'device-mode-toolbar-spacer');
+        var optionsToolbar = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.Toolbar('device-mode-toolbar-options', rightContainer);
+        optionsToolbar.makeWrappable();
+        this.fillOptionsToolbar(optionsToolbar);
+        this.emulatedDevicesList = _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.EmulatedDevicesList.instance();
+        this.emulatedDevicesList.addEventListener("CustomDevicesUpdated" /* EmulationModel.EmulatedDevices.Events.CustomDevicesUpdated */ , this.deviceListChanged, this);
+        this.emulatedDevicesList.addEventListener("StandardDevicesUpdated" /* EmulationModel.EmulatedDevices.Events.StandardDevicesUpdated */ , this.deviceListChanged, this);
+        this.persistenceSetting = _core_common_common_js__WEBPACK_IMPORTED_MODULE_0__.Settings.Settings.instance().createSetting('emulation.device-mode-value', {
+            device: '',
+            orientation: '',
+            mode: ''
+        });
+        this.model.toolbarControlsEnabledSetting().addChangeListener(updateToolbarsEnabled);
+        updateToolbarsEnabled();
+    }
+    _create_class(DeviceModeToolbar, [
+        {
+            key: "createEmptyToolbarElement",
+            value: function createEmptyToolbarElement() {
+                var element = document.createElement('div');
+                element.classList.add('device-mode-empty-toolbar-element');
+                return element;
+            }
+        },
+        {
+            key: "fillLeftToolbar",
+            value: function fillLeftToolbar(toolbar) {
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.deviceSelectItem = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendDeviceMenuItems.bind(this), undefined, undefined, 'device');
+                this.deviceSelectItem.turnShrinkable();
+                this.deviceSelectItem.setDarkText();
+                toolbar.appendToolbarItem(this.deviceSelectItem);
+            }
+        },
+        {
+            key: "fillMainToolbar",
+            value: function fillMainToolbar(toolbar) {
+                toolbar.appendToolbarItem(new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarItem(this.widthInput));
+                var xElement = document.createElement('div');
+                xElement.classList.add('device-mode-x');
+                xElement.textContent = '×';
+                this.xItem = this.wrapToolbarItem(xElement);
+                toolbar.appendToolbarItem(this.xItem);
+                toolbar.appendToolbarItem(new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarItem(this.heightInput));
+            }
+        },
+        {
+            key: "fillRightToolbar",
+            value: function fillRightToolbar(toolbar) {
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.scaleItem = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendScaleMenuItems.bind(this), undefined, undefined, 'scale');
+                setTitleForButton(this.scaleItem, i18nString(UIStrings.zoom));
+                this.scaleItem.setDarkText();
+                toolbar.appendToolbarItem(this.scaleItem);
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.deviceScaleItem = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendDeviceScaleMenuItems.bind(this), undefined, undefined, 'device-pixel-ratio');
+                this.deviceScaleItem.setVisible(this.showDeviceScaleFactorSetting.get());
+                setTitleForButton(this.deviceScaleItem, i18nString(UIStrings.devicePixelRatio));
+                this.deviceScaleItem.setDarkText();
+                toolbar.appendToolbarItem(this.deviceScaleItem);
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.uaItem = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendUserAgentMenuItems.bind(this), undefined, undefined, 'device-type');
+                this.uaItem.setVisible(this.showUserAgentTypeSetting.get());
+                setTitleForButton(this.uaItem, i18nString(UIStrings.deviceType));
+                this.uaItem.setDarkText();
+                toolbar.appendToolbarItem(this.uaItem);
+                this.throttlingConditionsItem = _mobile_throttling_mobile_throttling_js__WEBPACK_IMPORTED_MODULE_7__.ThrottlingManager.throttlingManager().createMobileThrottlingButton();
+                toolbar.appendToolbarItem(this.throttlingConditionsItem);
+            }
+        },
+        {
+            key: "fillModeToolbar",
+            value: function fillModeToolbar(toolbar) {
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.modeButton = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarButton('', 'screen-rotation', undefined, 'screen-rotation');
+                this.modeButton.addEventListener("Click" /* UI.Toolbar.ToolbarButton.Events.Click */ , this.modeMenuClicked, this);
+                toolbar.appendToolbarItem(this.modeButton);
+                // Show dual screen toolbar.
+                this.spanButton = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarButton('', 'device-fold', undefined, 'device-fold');
+                this.spanButton.addEventListener("Click" /* UI.Toolbar.ToolbarButton.Events.Click */ , this.spanClicked, this);
+                toolbar.appendToolbarItem(this.spanButton);
+                // Show posture toolbar menu for foldable devices.
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                this.postureItem = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendDevicePostureItems.bind(this), undefined, undefined, 'device-posture');
+                this.postureItem.setDarkText();
+                setTitleForButton(this.postureItem, i18nString(UIStrings.devicePosture));
+                toolbar.appendToolbarItem(this.postureItem);
+                this.createExperimentalButton(toolbar);
+            }
+        },
+        {
+            key: "createExperimentalButton",
+            value: function createExperimentalButton(toolbar) {
+                toolbar.appendToolbarItem(new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarSeparator(true));
+                var title = this.model.webPlatformExperimentalFeaturesEnabled() ? i18nString(UIStrings.experimentalWebPlatformFeature) : i18nString(UIStrings.experimentalWebPlatformFeatureFlag);
+                this.experimentalButton = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarToggle(title, 'experiment-check');
+                this.experimentalButton.setToggled(this.model.webPlatformExperimentalFeaturesEnabled());
+                this.experimentalButton.setEnabled(true);
+                this.experimentalButton.addEventListener("Click" /* UI.Toolbar.ToolbarButton.Events.Click */ , this.experimentalClicked, this);
+                toolbar.appendToolbarItem(this.experimentalButton);
+            }
+        },
+        {
+            key: "experimentalClicked",
+            value: function experimentalClicked() {
+                _core_host_host_js__WEBPACK_IMPORTED_MODULE_1__.InspectorFrontendHost.InspectorFrontendHostInstance.openInNewTab('chrome://flags/#enable-experimental-web-platform-features');
+            }
+        },
+        {
+            key: "fillOptionsToolbar",
+            value: function fillOptionsToolbar(toolbar) {
+                toolbar.appendToolbarItem(this.wrapToolbarItem(this.createEmptyToolbarElement()));
+                var moreOptionsButton = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarMenuButton(this.appendOptionsMenuItems.bind(this), undefined, undefined, 'more-options');
+                setTitleForButton(moreOptionsButton, i18nString(UIStrings.moreOptions));
+                toolbar.appendToolbarItem(moreOptionsButton);
+            }
+        },
+        {
+            key: "appendDevicePostureItems",
+            value: function appendDevicePostureItems(contextMenu) {
+                for(var _i = 0, _iter = [
+                    'Continuous',
+                    'Folded'
+                ]; _i < _iter.length; _i++){
+                    var title = _iter[_i];
+                    contextMenu.defaultSection().appendCheckboxItem(title, this.spanClicked.bind(this), {
+                        checked: title === this.currentDevicePosture(),
+                        jslogContext: title.toLowerCase()
+                    });
+                }
+            }
+        },
+        {
+            key: "currentDevicePosture",
+            value: function currentDevicePosture() {
+                var mode = this.model.mode();
+                if (mode && (mode.orientation === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.VerticalSpanned || mode.orientation === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.HorizontalSpanned)) {
+                    return 'Folded';
+                }
+                return 'Continuous';
+            }
+        },
+        {
+            key: "appendScaleMenuItems",
+            value: function appendScaleMenuItems(contextMenu) {
+                if (this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Device) {
+                    contextMenu.footerSection().appendItem(i18nString(UIStrings.fitToWindowF, {
+                        PH1: this.getPrettyFitZoomPercentage()
+                    }), this.onScaleMenuChanged.bind(this, this.model.fitScale()), {
+                        jslogContext: 'fit-to-window'
+                    });
+                }
+                contextMenu.footerSection().appendCheckboxItem(i18nString(UIStrings.autoadjustZoom), this.onAutoAdjustScaleChanged.bind(this), {
+                    checked: this.autoAdjustScaleSetting.get(),
+                    jslogContext: 'auto-adjust-zoom'
+                });
+                var boundAppendScaleItem = appendScaleItem.bind(this);
+                boundAppendScaleItem('50%', 0.5);
+                boundAppendScaleItem('75%', 0.75);
+                boundAppendScaleItem('100%', 1);
+                boundAppendScaleItem('125%', 1.25);
+                boundAppendScaleItem('150%', 1.5);
+                boundAppendScaleItem('200%', 2);
+                function appendScaleItem(title, value) {
+                    contextMenu.defaultSection().appendCheckboxItem(title, this.onScaleMenuChanged.bind(this, value), {
+                        checked: this.model.scaleSetting().get() === value,
+                        jslogContext: title
+                    });
+                }
+            }
+        },
+        {
+            key: "onScaleMenuChanged",
+            value: function onScaleMenuChanged(value) {
+                this.model.scaleSetting().set(value);
+            }
+        },
+        {
+            key: "onAutoAdjustScaleChanged",
+            value: function onAutoAdjustScaleChanged() {
+                this.autoAdjustScaleSetting.set(!this.autoAdjustScaleSetting.get());
+            }
+        },
+        {
+            key: "appendDeviceScaleMenuItems",
+            value: function appendDeviceScaleMenuItems(contextMenu) {
+                var deviceScaleFactorSetting = this.model.deviceScaleFactorSetting();
+                var defaultValue = this.model.uaSetting().get() === "Mobile" /* EmulationModel.DeviceModeModel.UA.Mobile */  || this.model.uaSetting().get() === "Mobile (no touch)" /* EmulationModel.DeviceModeModel.UA.MobileNoTouch */  ? _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.defaultMobileScaleFactor : window.devicePixelRatio;
+                appendDeviceScaleFactorItem(contextMenu.headerSection(), i18nString(UIStrings.defaultF, {
+                    PH1: defaultValue
+                }), 0, 'dpr-default');
+                appendDeviceScaleFactorItem(contextMenu.defaultSection(), '1', 1, 'dpr-1');
+                appendDeviceScaleFactorItem(contextMenu.defaultSection(), '2', 2, 'dpr-2');
+                appendDeviceScaleFactorItem(contextMenu.defaultSection(), '3', 3, 'dpr-3');
+                function appendDeviceScaleFactorItem(section, title, value, jslogContext) {
+                    section.appendCheckboxItem(title, deviceScaleFactorSetting.set.bind(deviceScaleFactorSetting, value), {
+                        checked: deviceScaleFactorSetting.get() === value,
+                        jslogContext: jslogContext
+                    });
+                }
+            }
+        },
+        {
+            key: "appendUserAgentMenuItems",
+            value: function appendUserAgentMenuItems(contextMenu) {
+                var uaSetting = this.model.uaSetting();
+                appendUAItem("Mobile" /* EmulationModel.DeviceModeModel.UA.Mobile */ , "Mobile" /* EmulationModel.DeviceModeModel.UA.Mobile */ );
+                appendUAItem("Mobile (no touch)" /* EmulationModel.DeviceModeModel.UA.MobileNoTouch */ , "Mobile (no touch)" /* EmulationModel.DeviceModeModel.UA.MobileNoTouch */ );
+                appendUAItem("Desktop" /* EmulationModel.DeviceModeModel.UA.Desktop */ , "Desktop" /* EmulationModel.DeviceModeModel.UA.Desktop */ );
+                appendUAItem("Desktop (touch)" /* EmulationModel.DeviceModeModel.UA.DesktopTouch */ , "Desktop (touch)" /* EmulationModel.DeviceModeModel.UA.DesktopTouch */ );
+                function appendUAItem(title, value) {
+                    contextMenu.defaultSection().appendCheckboxItem(title, uaSetting.set.bind(uaSetting, value), {
+                        checked: uaSetting.get() === value,
+                        jslogContext: _core_platform_platform_js__WEBPACK_IMPORTED_MODULE_3__.StringUtilities.toKebabCase(value)
+                    });
+                }
+            }
+        },
+        {
+            key: "appendOptionsMenuItems",
+            value: function appendOptionsMenuItems(contextMenu) {
+                var model = this.model;
+                appendToggleItem(contextMenu.headerSection(), this.deviceOutlineSetting, i18nString(UIStrings.hideDeviceFrame), i18nString(UIStrings.showDeviceFrame), model.type() !== _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Device, 'device-frame');
+                appendToggleItem(contextMenu.headerSection(), this.showMediaInspectorSetting, i18nString(UIStrings.hideMediaQueries), i18nString(UIStrings.showMediaQueries), undefined, 'media-queries');
+                appendToggleItem(contextMenu.headerSection(), this.showRulersSetting, i18nString(UIStrings.hideRulers), i18nString(UIStrings.showRulers), undefined, 'rulers');
+                appendToggleItem(contextMenu.defaultSection(), this.showDeviceScaleFactorSetting, i18nString(UIStrings.removeDevicePixelRatio), i18nString(UIStrings.addDevicePixelRatio), undefined, 'device-pixel-ratio');
+                appendToggleItem(contextMenu.defaultSection(), this.showUserAgentTypeSetting, i18nString(UIStrings.removeDeviceType), i18nString(UIStrings.addDeviceType), undefined, 'device-type');
+                contextMenu.appendItemsAtLocation('deviceModeMenu');
+                contextMenu.footerSection().appendItem(i18nString(UIStrings.resetToDefaults), this.reset.bind(this), {
+                    jslogContext: 'reset-to-defaults'
+                });
+                contextMenu.footerSection().appendItem(i18nString(UIStrings.closeDevtools), _core_host_host_js__WEBPACK_IMPORTED_MODULE_1__.InspectorFrontendHost.InspectorFrontendHostInstance.closeWindow.bind(_core_host_host_js__WEBPACK_IMPORTED_MODULE_1__.InspectorFrontendHost.InspectorFrontendHostInstance), {
+                    jslogContext: 'close-dev-tools'
+                });
+                function appendToggleItem(section, setting, title1, title2, disabled, context) {
+                    if (typeof disabled === 'undefined') {
+                        disabled = model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.None;
+                    }
+                    var isEnabled = setting.get();
+                    var jslogContext = "".concat(context, "-").concat(isEnabled ? 'disable' : 'enable');
+                    section.appendItem(isEnabled ? title1 : title2, setting.set.bind(setting, !setting.get()), {
+                        disabled: disabled,
+                        jslogContext: jslogContext
+                    });
+                }
+            }
+        },
+        {
+            key: "reset",
+            value: function reset() {
+                this.deviceOutlineSetting.set(false);
+                this.showDeviceScaleFactorSetting.set(false);
+                this.showUserAgentTypeSetting.set(false);
+                this.showMediaInspectorSetting.set(false);
+                this.showRulersSetting.set(false);
+                this.model.reset();
+            }
+        },
+        {
+            key: "wrapToolbarItem",
+            value: function wrapToolbarItem(element) {
+                var container = document.createElement('div');
+                var shadowRoot = _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.UIUtils.createShadowRootWithCoreStyles(container, {
+                    cssFile: _deviceModeToolbar_css_legacy_js__WEBPACK_IMPORTED_MODULE_9__["default"],
+                    delegatesFocus: undefined
+                });
+                shadowRoot.appendChild(element);
+                return new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.Toolbar.ToolbarItem(container);
+            }
+        },
+        {
+            key: "emulateDevice",
+            value: function emulateDevice(device) {
+                var scale = this.autoAdjustScaleSetting.get() ? undefined : this.model.scaleSetting().get();
+                this.model.emulate(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Device, device, this.lastMode.get(device) || device.modes[0], scale);
+            }
+        },
+        {
+            key: "switchToResponsive",
+            value: function switchToResponsive() {
+                this.model.emulate(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive, null, null);
+            }
+        },
+        {
+            key: "filterDevices",
+            value: function filterDevices(devices) {
+                devices = devices.filter(function(d) {
+                    return d.show();
+                });
+                devices.sort(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.EmulatedDevice.deviceComparator);
+                return devices;
+            }
+        },
+        {
+            key: "standardDevices",
+            value: function standardDevices() {
+                return this.filterDevices(this.emulatedDevicesList.standard());
+            }
+        },
+        {
+            key: "customDevices",
+            value: function customDevices() {
+                return this.filterDevices(this.emulatedDevicesList.custom());
+            }
+        },
+        {
+            key: "allDevices",
+            value: function allDevices() {
+                return this.standardDevices().concat(this.customDevices());
+            }
+        },
+        {
+            key: "appendDeviceMenuItems",
+            value: function appendDeviceMenuItems(contextMenu) {
+                contextMenu.headerSection().appendCheckboxItem(i18nString(UIStrings.responsive), this.switchToResponsive.bind(this), {
+                    checked: this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive,
+                    jslogContext: 'responsive'
+                });
+                appendGroup.call(this, this.standardDevices());
+                appendGroup.call(this, this.customDevices());
+                contextMenu.footerSection().appendItem(i18nString(UIStrings.edit), this.emulatedDevicesList.revealCustomSetting.bind(this.emulatedDevicesList), {
+                    jslogContext: 'edit'
+                });
+                function appendGroup(devices) {
+                    if (!devices.length) {
+                        return;
+                    }
+                    var section = contextMenu.section();
+                    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+                    try {
+                        for(var _iterator = devices[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                            var device = _step.value;
+                            section.appendCheckboxItem(device.title, this.emulateDevice.bind(this, device), {
+                                checked: this.model.device() === device,
+                                jslogContext: _core_platform_platform_js__WEBPACK_IMPORTED_MODULE_3__.StringUtilities.toKebabCase(device.title)
+                            });
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally{
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                                _iterator.return();
+                            }
+                        } finally{
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            key: "deviceListChanged",
+            value: function deviceListChanged() {
+                var device = this.model.device();
+                if (!device) {
+                    return;
+                }
+                var devices = this.allDevices();
+                if (devices.indexOf(device) === -1) {
+                    if (devices.length) {
+                        this.emulateDevice(devices[0]);
+                    } else {
+                        this.model.emulate(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive, null, null);
+                    }
+                } else {
+                    this.emulateDevice(device);
+                }
+            }
+        },
+        {
+            key: "updateDeviceScaleFactorVisibility",
+            value: function updateDeviceScaleFactorVisibility() {
+                if (this.deviceScaleItem) {
+                    this.deviceScaleItem.setVisible(this.showDeviceScaleFactorSetting.get());
+                }
+            }
+        },
+        {
+            key: "updateUserAgentTypeVisibility",
+            value: function updateUserAgentTypeVisibility() {
+                if (this.uaItem) {
+                    this.uaItem.setVisible(this.showUserAgentTypeSetting.get());
+                }
+            }
+        },
+        {
+            key: "spanClicked",
+            value: function spanClicked() {
+                var device = this.model.device();
+                if (!device || !device.isDualScreen && !device.isFoldableScreen) {
+                    return;
+                }
+                var scale = this.autoAdjustScaleSetting.get() ? undefined : this.model.scaleSetting().get();
+                var mode = this.model.mode();
+                if (!mode) {
+                    return;
+                }
+                var newMode = device.getSpanPartner(mode);
+                if (!newMode) {
+                    return;
+                }
+                this.model.emulate(this.model.type(), device, newMode, scale);
+                return;
+            }
+        },
+        {
+            key: "modeMenuClicked",
+            value: function modeMenuClicked(event) {
+                var device = this.model.device();
+                var model = this.model;
+                var autoAdjustScaleSetting = this.autoAdjustScaleSetting;
+                if (model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive) {
+                    var appliedSize = model.appliedDeviceSize();
+                    if (autoAdjustScaleSetting.get()) {
+                        model.setSizeAndScaleToFit(appliedSize.height, appliedSize.width);
+                    } else {
+                        model.setWidth(appliedSize.height);
+                        model.setHeight(appliedSize.width);
+                    }
+                    return;
+                }
+                if (!device) {
+                    return;
+                }
+                if ((device.isDualScreen || device.isFoldableScreen || device.modes.length === 2) && device.modes[0].orientation !== device.modes[1].orientation) {
+                    var scale = autoAdjustScaleSetting.get() ? undefined : model.scaleSetting().get();
+                    var mode = model.mode();
+                    if (!mode) {
+                        return;
+                    }
+                    var rotationPartner = device.getRotationPartner(mode);
+                    if (!rotationPartner) {
+                        return;
+                    }
+                    model.emulate(model.type(), model.device(), rotationPartner, scale);
+                    return;
+                }
+                if (!this.modeButton) {
+                    return;
+                }
+                var contextMenu = new _ui_legacy_legacy_js__WEBPACK_IMPORTED_MODULE_5__.ContextMenu.ContextMenu(event.data, {
+                    useSoftMenu: false,
+                    x: this.modeButton.element.getBoundingClientRect().left,
+                    y: this.modeButton.element.getBoundingClientRect().top + this.modeButton.element.offsetHeight
+                });
+                addOrientation(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.Vertical, i18nString(UIStrings.portrait));
+                addOrientation(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.EmulatedDevices.Horizontal, i18nString(UIStrings.landscape));
+                void contextMenu.show();
+                function addOrientation(orientation, title) {
+                    if (!device) {
+                        return;
+                    }
+                    var modes = device.modesForOrientation(orientation);
+                    if (!modes.length) {
+                        return;
+                    }
+                    if (modes.length === 1) {
+                        addMode(modes[0], title);
+                    } else {
+                        for(var index = 0; index < modes.length; index++){
+                            addMode(modes[index], title + ' \u2013 ' + modes[index].title);
+                        }
+                    }
+                }
+                function addMode(mode, title) {
+                    contextMenu.defaultSection().appendCheckboxItem(title, applyMode.bind(null, mode), {
+                        checked: model.mode() === mode,
+                        jslogContext: 'device-mode'
+                    });
+                }
+                function applyMode(mode) {
+                    var scale = autoAdjustScaleSetting.get() ? undefined : model.scaleSetting().get();
+                    model.emulate(model.type(), model.device(), mode, scale);
+                }
+            }
+        },
+        {
+            key: "getPrettyFitZoomPercentage",
+            value: function getPrettyFitZoomPercentage() {
+                return "".concat((this.model.fitScale() * 100).toFixed(0));
+            }
+        },
+        {
+            key: "getPrettyZoomPercentage",
+            value: function getPrettyZoomPercentage() {
+                return "".concat((this.model.scale() * 100).toFixed(0));
+            }
+        },
+        {
+            key: "element",
+            value: function element() {
+                return this.elementInternal;
+            }
+        },
+        {
+            key: "update",
+            value: function update() {
+                if (this.model.type() !== this.cachedModelType) {
+                    this.cachedModelType = this.model.type();
+                    this.widthInput.disabled = this.model.type() !== _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive;
+                    this.heightInput.disabled = this.model.type() !== _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive;
+                    this.deviceScaleItem.setEnabled(this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive);
+                    this.uaItem.setEnabled(this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive);
+                    if (this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive) {
+                        this.modeButton.setEnabled(true);
+                        setTitleForButton(this.modeButton, i18nString(UIStrings.rotate));
+                    } else {
+                        this.modeButton.setEnabled(false);
+                    }
+                }
+                var size = this.model.appliedDeviceSize();
+                this.widthInput.size = String(size.width);
+                this.heightInput.size = this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive && this.model.isFullHeight() ? '' : String(size.height);
+                this.heightInput.placeholder = String(size.height);
+                if (this.model.scale() !== this.cachedScale) {
+                    this.scaleItem.setText("".concat(this.getPrettyZoomPercentage(), "%"));
+                    this.cachedScale = this.model.scale();
+                }
+                var deviceScale = this.model.appliedDeviceScaleFactor();
+                if (deviceScale !== this.cachedDeviceScale) {
+                    this.deviceScaleItem.setText("DPR: ".concat(deviceScale.toFixed(1)));
+                    this.cachedDeviceScale = deviceScale;
+                }
+                var uaType = this.model.appliedUserAgentType();
+                if (uaType !== this.cachedUaType) {
+                    this.uaItem.setText(uaType);
+                    this.cachedUaType = uaType;
+                }
+                var deviceItemTitle = i18nString(UIStrings.none);
+                if (this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive) {
+                    deviceItemTitle = i18nString(UIStrings.responsive);
+                }
+                var device = this.model.device();
+                if (this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Device && device) {
+                    deviceItemTitle = device.title;
+                }
+                this.deviceSelectItem.setText("".concat(i18nString(UIStrings.dimensions), ": ").concat(deviceItemTitle));
+                if (this.model.device() !== this.cachedModelDevice) {
+                    var device1 = this.model.device();
+                    if (device1) {
+                        var modeCount = device1 ? device1.modes.length : 0;
+                        this.modeButton.setEnabled(modeCount >= 2);
+                        setTitleForButton(this.modeButton, modeCount === 2 ? i18nString(UIStrings.rotate) : i18nString(UIStrings.screenOrientationOptions));
+                    }
+                    this.cachedModelDevice = device1;
+                }
+                if (this.experimentalButton) {
+                    var device2 = this.model.device();
+                    if (device2 && (device2.isDualScreen || device2.isFoldableScreen)) {
+                        if (device2.isDualScreen) {
+                            this.spanButton.setVisible(true);
+                            this.postureItem.setVisible(false);
+                        } else if (device2.isFoldableScreen) {
+                            this.spanButton.setVisible(false);
+                            this.postureItem.setVisible(true);
+                            this.postureItem.setText(this.currentDevicePosture());
+                        }
+                        this.experimentalButton.setVisible(true);
+                    } else {
+                        this.spanButton.setVisible(false);
+                        this.postureItem.setVisible(false);
+                        this.experimentalButton.setVisible(false);
+                    }
+                    setTitleForButton(this.spanButton, i18nString(UIStrings.toggleDualscreenMode));
+                }
+                if (this.model.type() === _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Device) {
+                    this.lastMode.set(this.model.device(), this.model.mode());
+                }
+                if (this.model.mode() !== this.cachedModelMode && this.model.type() !== _models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.None) {
+                    this.cachedModelMode = this.model.mode();
+                    var value = this.persistenceSetting.get();
+                    var device3 = this.model.device();
+                    if (device3) {
+                        value.device = device3.title;
+                        var mode = this.model.mode();
+                        value.orientation = mode ? mode.orientation : '';
+                        value.mode = mode ? mode.title : '';
+                    } else {
+                        value.device = '';
+                        value.orientation = '';
+                        value.mode = '';
+                    }
+                    this.persistenceSetting.set(value);
+                }
+            }
+        },
+        {
+            key: "restore",
+            value: function restore() {
+                var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+                try {
+                    for(var _iterator = this.allDevices()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                        var device = _step.value;
+                        if (device.title === this.persistenceSetting.get().device) {
+                            var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
+                            try {
+                                for(var _iterator1 = device.modes[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                                    var mode = _step1.value;
+                                    if (mode.orientation === this.persistenceSetting.get().orientation && mode.title === this.persistenceSetting.get().mode) {
+                                        this.lastMode.set(device, mode);
+                                        this.emulateDevice(device);
+                                        return;
+                                    }
+                                }
+                            } catch (err) {
+                                _didIteratorError1 = true;
+                                _iteratorError1 = err;
+                            } finally{
+                                try {
+                                    if (!_iteratorNormalCompletion1 && _iterator1.return != null) {
+                                        _iterator1.return();
+                                    }
+                                } finally{
+                                    if (_didIteratorError1) {
+                                        throw _iteratorError1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally{
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return != null) {
+                            _iterator.return();
+                        }
+                    } finally{
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+                this.model.emulate(_models_emulation_emulation_js__WEBPACK_IMPORTED_MODULE_4__.DeviceModeModel.Type.Responsive, null, null);
+            }
+        }
+    ]);
+    return DeviceModeToolbar;
+} //# sourceMappingURL=DeviceModeToolbar.js.map
+();
+
+
+}),
+"./panels/emulation/components/components.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  DeviceSizeInputElement: function() { return /* reexport module object */ _DeviceSizeInputElement_js__WEBPACK_IMPORTED_MODULE_0__; }
+});
+/* harmony import */var _DeviceSizeInputElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeviceSizeInputElement.js */ "./panels/emulation/components/DeviceSizeInputElement.js");
+// Copyright 2021 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+ //# sourceMappingURL=components.js.map
+
+
+}),
+"./panels/emulation/deviceModeToolbar.css.legacy.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  "default": function() { return __WEBPACK_DEFAULT_EXPORT__; }
+});
+// Copyright 2024 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+// IMPORTANT: this file is auto generated. Please do not edit this file.
+/* istanbul ignore file */ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+    cssContent: "/*\n * Copyright 2015 The Chromium Authors. All rights reserved.\n * Use of this source code is governed by a BSD-style license that can be\n * found in the LICENSE file.\n */\n\n.device-mode-x {\n  margin: 0 1px;\n  font-size: 16px;\n}\n\n.device-mode-empty-toolbar-element {\n  width: 0;\n}\n\n/*# sourceURL=deviceModeToolbar.css */\n"
+});
+
+
+}),
+
+}]);

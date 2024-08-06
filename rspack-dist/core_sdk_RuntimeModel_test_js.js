@@ -1,0 +1,89 @@
+"use strict";
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["core_sdk_RuntimeModel_test_js"], {
+"./core/sdk/RuntimeModel.test.js": (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */var _testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../testing/EnvironmentHelpers.js */ "./testing/EnvironmentHelpers.js");
+/* harmony import */var _testing_MockConnection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../testing/MockConnection.js */ "./testing/MockConnection.js");
+/* harmony import */var _sdk_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sdk.js */ "./core/sdk/sdk.js");
+// Copyright 2022 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+
+(0,_testing_MockConnection_js__WEBPACK_IMPORTED_MODULE_1__.describeWithMockConnection)('ExecutionContext', function() {
+    var createExecutionContext = function createExecutionContext(target, name, isDefault) {
+        var runtimeModel = target.model(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.RuntimeModel);
+        assert.exists(runtimeModel);
+        return new _sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext(runtimeModel, 42, 'uniqueId', name !== null && name !== void 0 ? name : 'name', 'http://www.example.com', Boolean(isDefault));
+    };
+    it('can be compared based on target type', function() {
+        var tabTarget = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Tab
+        });
+        var mainFrameTargetUnderTab = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame,
+            parentTarget: tabTarget
+        });
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(createExecutionContext(mainFrameTargetUnderTab), createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame,
+            parentTarget: mainFrameTargetUnderTab
+        }))), -1);
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame,
+            parentTarget: mainFrameTargetUnderTab
+        })), createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.ServiceWorker,
+            parentTarget: mainFrameTargetUnderTab
+        }))), -1);
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.ServiceWorker,
+            parentTarget: mainFrameTargetUnderTab
+        })), createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.SharedWorker,
+            parentTarget: mainFrameTargetUnderTab
+        }))), -1);
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.ServiceWorker,
+            parentTarget: mainFrameTargetUnderTab
+        })), createExecutionContext((0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Worker,
+            parentTarget: mainFrameTargetUnderTab
+        }))), -1);
+    });
+    it('can be compared based on target depth', function() {
+        var tabTarget = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Tab
+        });
+        var mainFrameTarget = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame,
+            parentTarget: tabTarget
+        });
+        var subframeTarget = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame,
+            parentTarget: mainFrameTarget
+        });
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(createExecutionContext(mainFrameTarget), createExecutionContext(subframeTarget)), -1);
+    });
+    it('can be compared based on defaultness', function() {
+        var target = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame
+        });
+        var defaultExecutionContext = createExecutionContext(target, 'name', /* isDefault=*/ true);
+        var notDefaultExecutionContext = createExecutionContext(target, 'name', /* isDefault=*/ false);
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(defaultExecutionContext, notDefaultExecutionContext), -1);
+    });
+    it('can be compared based on name', function() {
+        var target = (0,_testing_EnvironmentHelpers_js__WEBPACK_IMPORTED_MODULE_0__.createTarget)({
+            type: _sdk_js__WEBPACK_IMPORTED_MODULE_2__.Target.Type.Frame
+        });
+        var executionContextA = createExecutionContext(target, /* name=*/ 'a');
+        var executionContextB = createExecutionContext(target, /* name=*/ 'b');
+        assert.strictEqual(_sdk_js__WEBPACK_IMPORTED_MODULE_2__.RuntimeModel.ExecutionContext.comparator(executionContextA, executionContextB), -1);
+    });
+}); //# sourceMappingURL=RuntimeModel.test.js.map
+
+
+}),
+
+}]);

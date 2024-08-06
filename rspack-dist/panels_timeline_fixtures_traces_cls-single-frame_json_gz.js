@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["panels_timeline_fixtures_traces_cls-single-frame_json_gz"], {
+"./panels/timeline/fixtures/traces/cls-single-frame.json.gz": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Unexpected character '\\u{1f}'\n\u001b[31m      \u001b[0m   ╭─[1:1]\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ \u001f�\b\u0000\u0000\u0000\u0000\u0000\u0000\u0013��n\u001c9�-�*\u0003���x����U\u0006\\��/�߇�@HKa;��LMf�U�F��!#�\u0011�r�\n\u001b[31m      \u001b[0m   · \u001b[35;1m▲\u001b[0m\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ F.�4����eI��In����:�m\u0016g���j�=y�_�:Yl>�?��d��Ҝ<:�����l6'�~pr�؅/��~iv���nq�`�M�ϛfq~��������_�\u001f��'����>8��?�����ٿ\u001f|�9O7O6�?�����ruЧ9}�iB���iV����\u000fTªi������k�%Y��ϛ�����o��߆��\u0014���g�m�ϧ�/���r��\u0000>�_���߾֧��\u0017�/8�M.ei�ק�������'�������^��\u0015*)���i�\u0017��כ?�\r\u0007��;[���'\u000b̒���������n���>~�\u0004y���Nɺe+�f�Z\u0017��-��������A�_�}i��g\u000f:+�嘟��\u000f�d��c\u0000Q\u001d�����~�Aj��Ԭ�E~m��7�^�>n\u0016�=U��\u001e\f{�b�i>m�W���*a�k��\u00059���\u001ft�\u0013bڑ�}~�H�/\u0019\u001e׏b��.7�f��}�\u0005k���������9�æ��{C�OJD8�AW��e�K�c�L���gN���zu��\u0016$�H��Ȣ8���\u0012󉷈����W��n�^�\\����X��#��k�\\E��Ŧ����yp�]�3��\u001a+\\���.�\u000b���;�w\u000f�b�8_�>\r\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);

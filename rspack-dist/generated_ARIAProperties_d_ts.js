@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["generated_ARIAProperties_d_ts"], {
+"./generated/ARIAProperties.d.ts": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module build failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m   \u001b[31m×\u001b[0m ESM-style module declarations are not permitted in a namespace.\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m     ╭─[\u001b[36;1;4m/mnt/p0/Personal/rspack-repro-import-meta-url/src/generated/ARIAProperties.d.ts\u001b[0m:21:1]\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m18\u001b[0m │     namespace metadata {\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m19\u001b[0m │         export let attrsNullNamespace: boolean;\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m20\u001b[0m │         let _export: string;\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m21\u001b[0m │         export { _export as export };\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m     · \u001b[35;1m        ─────────────────────────────\u001b[0m\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m22\u001b[0m │         export let namespace: string;\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m23\u001b[0m │         export let namespacePrefix: string;\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m  \u001b[2m24\u001b[0m │         export let namespaceURI: string;\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m     ╰────\n\u001b[31m      \u001b[0m  \u001b[31m│\u001b[0m\n\u001b[31m      \u001b[0m\n");
+
+
+}),
+
+}]);

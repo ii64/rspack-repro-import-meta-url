@@ -1,0 +1,8 @@
+(self['webpackChunk'] = self['webpackChunk'] || []).push([["entrypoints_heap_snapshot_worker_heap_snapshot_worker_js_map"], {
+"./entrypoints/heap_snapshot_worker/heap_snapshot_worker.js.map": (function () {
+throw new Error("  \u001b[31m×\u001b[0m Module parse failed:\n\u001b[31m  ╰─▶ \u001b[0m  \u001b[31m×\u001b[0m JavaScript parsing error: Expected ';', '}' or <eof>\n\u001b[31m      \u001b[0m   ╭────\n\u001b[31m      \u001b[0m \u001b[2m1\u001b[0m │ {\"version\":3,\"file\":\"heap_snapshot_worker.js\",\"sourceRoot\":\"\",\"sources\":[\"../../../../../../front_end/entrypoints/heap_snapshot_worker/heap_snapshot_worker.ts\"],\"names\":[],\"mappings\":\"AAAA,4DAA4D;AAC5D,yEAAyE;AACzE,6BAA6B;AAE7B,OAAO,KAAK,iBAAiB,MAAM,wBAAwB,CAAC;AAC5D,OAAO,KAAK,YAAY,MAAM,mBAAmB,CAAC;AAClD,OAAO,KAAK,kBAAkB,MAAM,yBAAyB,CAAC;AAC9D,OAAO,KAAK,4BAA4B,MAAM,mCAAmC,CAAC;AAElF,OAAO,EACL,iBAAiB,EACjB,YAAY,EACZ,kBAAkB,EAClB,4BAA4B,GAC7B,CAAC\",\"sourcesContent\":[\"// Copyright 2019 The Chromium Authors. All rights reserved.\\n// Use of this source code is governed by a BSD-style license that can be\\n// found in the LICENSE file.\\n\\nimport * as AllocationProfile from './AllocationProfile.js';\\nimport * as HeapSnapshot from './HeapSnapshot.js';\\nimport * as HeapSnapshotLoader from './HeapSnapshotLoader.js';\\nimport * as HeapSnapshotWorkerDispatcher from './HeapSnapshotWorkerDispatcher.js';\\n\\nexport {\\n  AllocationProfile,\\n  HeapSnapshot,\\n  HeapSnapshotLoader,\\n  HeapSnapshotWorkerDispatcher,\\n};\\n\"]}\n\u001b[31m      \u001b[0m   · \u001b[35;1m          ─\u001b[0m\n\u001b[31m      \u001b[0m   ╰────\n\u001b[31m      \u001b[0m\n\u001b[36m  help: \u001b[0m\n        You may need an appropriate loader to handle this file type.\n");
+
+
+}),
+
+}]);
