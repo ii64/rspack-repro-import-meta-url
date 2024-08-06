@@ -46,9 +46,9 @@ const config = {
     },
     rules: [
       {
-        test: /\.ts$/i,
+        test: /\.(ts|js)$/i,
         use: {
-          loader: "ts-loader",
+          loader: "builtin:swc-loader",
         },
       },
     ],

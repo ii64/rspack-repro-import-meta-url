@@ -6,7 +6,9 @@ const isAB = true;
 export default defineConfig({
   source: {
     entry: {
-      inspector: isAB ? "./src/entrypoints/inspector/inspector.ts" : "./inspector.ts",
+      inspector: isAB
+        ? "./entrypoints/inspector/inspector"
+        : "./inspector.ts",
     },
   },
   output: {
@@ -18,7 +20,7 @@ export default defineConfig({
   // },
   tools: {
     rspack: {
-      context: path.join(__dirname, isAB ? "" : "src/entrypoints/inspector"),
+      context: './src/',
       resolve: {
         extensions: [".ts", ".js", ".json"],
         extensionAlias: {
@@ -35,7 +37,8 @@ export default defineConfig({
           {
             test: /\.ts$/i,
             use: {
-              loader: "ts-loader",
+              loader: "builtin:swc-loader",
+              // loader: "ts-loader",
             },
           },
         ],
