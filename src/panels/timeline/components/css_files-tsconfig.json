@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "outDir": "."
+    },
+    "files": [
+        "breadcrumbsUI.css.js",
+        "fieldSettingsDialog.css.js",
+        "interactionBreakdown.css.js",
+        "liveMetricsView.css.js",
+        "networkRequestDetails.css.js",
+        "networkRequestTooltip.css.js",
+        "sidebarAnnotationsTab.css.js",
+        "sidebarInsightsTab.css.js",
+        "sidebarSingleNavigation.css.js"
+    ]
+}

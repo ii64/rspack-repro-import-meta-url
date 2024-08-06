@@ -1,7 +1,0 @@
-{
-    "name": "devtools-frontend",
-    "type": "module",
-    "files": [
-        "./*"
-    ]
-}
